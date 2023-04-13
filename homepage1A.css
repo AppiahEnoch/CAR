@@ -1,0 +1,21 @@
+
+  .scrolling-text {
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .scrolling-text h2 {
+    position: absolute;
+    white-space: nowrap;
+    width: 80%;
+    animation: scroll-text 20s linear infinite;
+  }
+
+  @keyframes scroll-text {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-80%); }
+  }
+
+
