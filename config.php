@@ -13,8 +13,6 @@ $remote_host = gethostbyaddr($remote_addr);
 
 if($remote_host=="AECleanCodes"){
 
-
-
     try {
 
 
@@ -34,11 +32,10 @@ exit;
     try {
 
 
-
         $DBhostname = "localhost";
-        $DBusername = "root";
-        $DBpassword = "";
-        $database = "car";
+        $DBusername = "crystaon_AECleanCodes";
+        $DBpassword = "BGpwsS3i6aL5";
+        $database = "crystaon_car";
     
 
        $conn = mysqli_connect($DBhostname, $DBusername, $DBpassword, $database) or die("Database connection failed");
