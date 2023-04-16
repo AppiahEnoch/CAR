@@ -14,7 +14,7 @@ jobs:
       with:
         server: ftp.crysta.online # use your FTP server hostname
         username: carwash@crysta.online # use your FTP username
-        password: ${{ secrets.FTP_PASSWORD }} # use your FTP password secret
+        password: Encapsulation419@ # use your FTP password secret
         port: 21 # specify the FTP port number
         protocol: ftps-explicit # use explicit FTPS
         local-dir: ./ # replace with the directory of the files you want to upload
