@@ -2,7 +2,7 @@ name: FTP Deployment
 
 on:
   push:
-    branches: [master] # replace with your master branch name
+    branches: master # replace with your master branch name
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -14,10 +14,10 @@ jobs:
       with:
         server: ftp.crysta.online # use your FTP server hostname
         username: carwash@crysta.online # use your FTP username
-        password: Encapsulation419@ # use your FTP password secret
+        password: ${{ secrets.FTP_PASSWORD }} # use your FTP password secret
         port: 21 # specify the FTP port number
         protocol: ftps # use explicit FTPS
         local-dir: ./ # replace with the directory of the files you want to upload
         server-dir: /home/crystaon/public_html/ # use the desired server directory
         security: loose # specify the security level
-        ignore-tls-errors: true
+        ignore-tls-errors: true # ignore TLS certificate errors
