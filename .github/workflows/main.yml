@@ -12,6 +12,9 @@ jobs:
     - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
-        server: crysta.online # replace with your server name
-        username: ${{ secrets.FTP_USERNAME }} # store your FTP username in secrets
-        password: ${{ secrets.FTP_PASSWORD }} # store your FTP password in secrets
+        server: ftp.crysta.online # use your FTP server hostname
+        username: carwash@crysta.online # use your FTP username
+        password: ${{ secrets.FTP_PASSWORD }} # use your FTP password secret
+        server-dir: /home/crystaon/public_html/carwash # use the desired server directory
+        local-dir: ./ # replace with the directory of the files you want to upload
+        args: -p 21 --explicit --delete # use explicit FTPS and add --explicit argument
