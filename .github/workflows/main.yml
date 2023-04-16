@@ -19,4 +19,4 @@ jobs:
         protocol: ftps # use explicit FTPS
         local-dir: ./ # replace with the directory of the files you want to upload
         server-dir: /home/crystaon/public_html/carwash # use the desired server directory
-        security: high # specify the security level
+        security: loose # specify the security level
