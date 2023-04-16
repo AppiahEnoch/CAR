@@ -15,6 +15,8 @@ jobs:
         server: ftp.crysta.online # use your FTP server hostname
         username: carwash@crysta.online # use your FTP username
         password: ${{ secrets.FTP_PASSWORD }} # use your FTP password secret
-        server-dir: /home/crystaon/public_html/carwash # use the desired server directory
+        port: 21 # specify the FTP port number
+        protocol: ftps-explicit # use explicit FTPS
         local-dir: ./ # replace with the directory of the files you want to upload
-        args: -p 21 --explicit --delete # use explicit FTPS and add --explicit argument
+        server-dir: /home/crystaon/public_html/carwash # use the desired server directory
+        security: high # specify the security level
