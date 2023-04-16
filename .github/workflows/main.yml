@@ -16,7 +16,7 @@ jobs:
         username: carwash@crysta.online # use your FTP username
         password: Encapsulation419@ # use your FTP password secret
         port: 21 # specify the FTP port number
-        protocol: ftps-explicit # use explicit FTPS
+        protocol: ftps # use explicit FTPS
         local-dir: ./ # replace with the directory of the files you want to upload
         server-dir: /home/crystaon/public_html/carwash # use the desired server directory
         security: high # specify the security level
