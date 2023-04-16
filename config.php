@@ -31,7 +31,7 @@ exit;
 
     try {
 
-
+echo 222222;
         $DBhostname = "localhost";
         $DBusername = "crystaon_AECleanCodes";
         $DBpassword = "BGpwsS3i6aL5";
