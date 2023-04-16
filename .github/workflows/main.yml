@@ -18,5 +18,5 @@ jobs:
         port: 21 # specify the FTP port number
         protocol: ftps # use explicit FTPS
         local-dir: ./ # replace with the directory of the files you want to upload
-        server-dir: /home/crystaon/public_html/carwash # use the desired server directory
+        server-dir: /home/crystaon/public_html/ # use the desired server directory
         security: loose # specify the security level
