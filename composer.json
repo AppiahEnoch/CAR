@@ -17,6 +17,7 @@
         "phpoffice/phpspreadsheet": "^1.28",
         "setasign/fpdf": "^1.8",
         "phpoffice/phpword": "^1.0",
-        "fpdf/fpdf": "^1.85"
+        "fpdf/fpdf": "^1.85",
+        "vlucas/phpdotenv": "^5.5"
     }
 }
