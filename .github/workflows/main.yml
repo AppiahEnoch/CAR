@@ -20,3 +20,4 @@ jobs:
         local-dir: ./ # replace with the directory of the files you want to upload
         server-dir: /home/crystaon/public_html/ # use the desired server directory
         security: loose # specify the security level
+        ignore-tls-errors: true
