@@ -352,6 +352,24 @@ button:hover{
 
 
 
+#exitIcon {
+  animation: moveLeftRight 1s ease-in-out infinite alternate;
+}
+
+@keyframes moveLeftRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(10px);
+  }
+}
+
+#exitIcon:hover{
+  color: red;
+  cursor: grab;
+  
+}
 
 
 

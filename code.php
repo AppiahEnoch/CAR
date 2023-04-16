@@ -1,3 +1,6 @@
+<?php
+include "checkSysadmin.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

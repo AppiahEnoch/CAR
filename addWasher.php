@@ -1,3 +1,6 @@
+<?php
+include "checkUser.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

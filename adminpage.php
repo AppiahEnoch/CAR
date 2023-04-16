@@ -1,5 +1,5 @@
 <?php
-//include "checkAdmin.php";
+include "checkSysadmin.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,16 +39,16 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <a href="index.php" id="logout" class="nav-link"> Log out</a>
+              <a href="login.php" id="logout" class="nav-link"> Log out</a>
             </li>
             <li class="nav-item">
               <a id="ll1" class="nav-link" href="washCarPage.php">
-
+              <i class="fa fa-tint" aria-hidden="true"></i>
                 Wash Car</a>
             </li>
             <li class="nav-item">
               <a id="ll1" class="nav-link" href="addWasher.php">
-
+              <i class="fa fa-user-circle" aria-hidden="true"></i>
                 Add Washer</a>
             </li>
             <li class="nav-item">
@@ -58,12 +58,7 @@
                 Add Car</a>
             </li>
 
-            <li class="nav-item">
-              <a id="ll3" class="nav-link" href="#">
-                <i class="fa fa-search" aria-hidden="true"></i>
-
-                Search</a>
-            </li>
+     
 
             <li class="nav-item">
               <a id="ll3" class="nav-link" href="code.php">
@@ -71,6 +66,15 @@
 
                 Code</a>
             </li>
+
+            <li class="nav-item">
+              <a id="emptySystem" class="nav-link" href="#">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+
+                Delete all</a>
+            </li>
+
+           
           </ul>
         </div>
       </div>
@@ -93,16 +97,21 @@
                 <select id="washerList">
                
                 </select>
+              
 
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
-               <input id="day1" type="number" placeholder="Days eg. 1 ">
+               <input id="day1" type="number" placeholder="Number eg. 1 ">
+            
+
                 <span id="downloadwasher1" class="badge badge-secondary text-muted">download</span>
               </li>
+              
               <li class="list-group-item d-flex justify-content-between align-items-center">
               <label class="myTitle">Monthly Record</label>
                 <span id="downloadwasher2" class="badge badge-secondary text-muted">download</span>
               </li>
+              <button id="btDeleteWorker" class="btn-primary"> Delete</button>
             </ul>
           </div>
         </div>
@@ -124,7 +133,7 @@
               </li>
               
               <li class="list-group-item d-flex justify-content-between align-items-center">
-                <input id="day2" type="number" placeholder="Days eg. 1 ">
+                <input id="day2" type="number" placeholder="Number eg. 1 ">
                 <span id="downloadmanager1" class="badge badge-secondary text-muted">download</span>
               </li>
 
@@ -133,7 +142,7 @@
               <label class="myTitle">Monthly Record</label>
               <span  id="downloadmanager2" class="badge badge-secondary text-muted">download</span>
               </li>
-              
+              <button id="btDeleteUser" class="btn-primary"> Delete</button>
             </ul>
           </div>
         </div>
@@ -147,17 +156,21 @@
           <div class="card-body">
             <label class="myTitle">SYSTEM REPORT</label>
             <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+               <input id="day3" type="number" placeholder="Number eg.1">
+              
+              </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
-                 Today's   Report
-                <span class="badge badge-secondary text-muted">download</span>
+                 Daily   Report
+                <span id="downloadS1" class="badge badge-secondary text-muted">download</span>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
               Monthly Report
-                <span class="badge badge-secondary text-muted">download</span>
+                <span id="downloadS2" class="badge badge-secondary text-muted">download</span>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
               Yearly Report
-                <span class="badge badge-secondary text-muted">download</span>
+                <span id="downloadS3" class="badge badge-secondary text-muted">download</span>
               </li>
 
             </ul>
@@ -302,40 +315,45 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 id="aeMTitle" class="modal-title">
-                <strong class="yenC" >CONFIRM ACTION!</strong>
+                <strong class="yenC" >CONFIRM DELETE ACTION!</strong>
               </h5>
             </div>
             <div class="modal-body">
-                <span class="yenC" id="aeMBody"> Do you want to perform this action? </span>
+            <span class="yenC" id="aeMBody"> Select Option To Delete </span>
+
+
+        <div class="row">
+        <select name="deleteOptions" id="deleteOptions">
+                  <option value="0">CHOOSE OPTION</option>
+                  <option value="1">ALL USER DATA</option>
+                  <option value="2">ALL VEHICLE</option>
+                  <option value="3">ALL WORKERS</option>
+        
+                </select>
+        </div>
             </div>
 
          
-              <div style="margin:0; padding: 0;" class="row">
-                <div class="col-6">
-                  <button id="aeMyesNoBt" type="button" class="btn btn-danger">
-                    Yes
-                  </button>
-                </div>
-                <div class="col-6">
-                  <button
-                    id="btClose"
-                    type="button"
-                    class="btn btn-primary"
-                    data-bs-dismiss="modal"
-                  >
-                    No
-                  </button>
-                </div>
+              <div style="margin-left:2rem; margin-right:2rem; margin-bottom: 3rem;" class="row">
+              <div class="col-6 d-flex justify-content-center">
+  <button id="aeMyesNoBt" type="button" class="btn btn-danger">
+    Delete
+  </button>
+</div>
+<div class="col-6 d-flex justify-content-center">
+  <button id="btClose" type="button" class="btn btn-primary" data-bs-dismiss="modal">
+    Cancel
+  </button>
+</div>
+
      
           </div>
         </div>
       </div>
       <!-- END AEMODEL-->
 
-
-
-
-
+  
+   
 
 
 

@@ -11,16 +11,15 @@ var nUsername = null;
 var nPassword = null;
 var nConfirm = null;
 
-
-var localEmailCode="1";
-var userEmailCode="0";
+var localEmailCode = '1';
+var userEmailCode = '0';
 
 $(document).ready(function () {
-  $("#aeMsuccessw").on("hidden.bs.modal", function () {
-    openPageReplace("index.php");
+  $('#aeMsuccessw').on('hidden.bs.modal', function () {
+    openPageReplace('login.php');
   });
 
-  $("#form").submit(function (e) {
+  $('#form').submit(function (e) {
     e.preventDefault();
     showSpin();
 
@@ -30,7 +29,7 @@ $(document).ready(function () {
   });
 
   // form2
-  $("#form2").submit(function (e) {
+  $('#form2').submit(function (e) {
     e.preventDefault();
     showSpin();
 
@@ -39,147 +38,127 @@ $(document).ready(function () {
     // alert(emailresend)
     getLoginDetails();
   });
-  $("#form3").submit(function (e) {
+  $('#form3').submit(function (e) {
     e.preventDefault();
     showSpin();
 
     getInput();
 
-
-    if(localEmailCode!=userEmailCode){
+    if (localEmailCode != userEmailCode) {
       getOTP();
-      const c1 = (document.getElementById("container4").style.display =
-      "block");
-    const c2 = (document.getElementById("container3").style.display =
-      "none");
-
+      const c1 = (document.getElementById('container4').style.display =
+        'block');
+      const c2 = (document.getElementById('container3').style.display = 'none');
+    } else {
+      saveNewUser();
     }
-    else{
-     saveNewUser();
-    }
-
   });
 
-
-  $("#form4").submit(function (e) {
+  $('#form4').submit(function (e) {
     e.preventDefault();
     showSpin();
 
     getInput();
 
+    var emailCode = $('#emailCode').val();
 
-var emailCode=$("#emailCode").val();
+    if (!aeEmpty(emailCode)) {
+      userEmailCode = emailCode;
+    }
 
-if(!(aeEmpty(emailCode))){
-  userEmailCode=emailCode;
-}
-
-
-if(userEmailCode==localEmailCode){
-
-  showAEMsuccess("Email verified successfully.")
-  const form1 = (document.getElementById("container3").style.display =
-  "block");
-const form2 = (document.getElementById("container4").style.display =
-  "none");
-
-}
-else{
-
-  showAEMerror("Invalid Code")
-}
-
-
-
+    if (userEmailCode == localEmailCode) {
+      showAEMsuccess('Email verified successfully.');
+      const form1 = (document.getElementById('container3').style.display =
+        'block');
+      const form2 = (document.getElementById('container4').style.display =
+        'none');
+    } else {
+      showAEMerror('Invalid Code');
+    }
   });
 
-
-
-  $("#username").keyup(function () {
+  $('#username').keyup(function () {
     hideSpin();
 
-    $("#error").css("display", "none");
+    $('#error').css('display', 'none');
 
-    $("#container").height("260");
+    $('#container').height('260');
   });
 
-  $("#password").keyup(function () {
+  $('#password').keyup(function () {
     hideSpin();
 
-    $("#error").css("display", "none");
+    $('#error').css('display', 'none');
 
-    $("#container").height("260");
+    $('#container').height('260');
   });
 
-  $("#btCarType").click(function () {
-    const form1 = (document.getElementById("container1").style.display =
-      "none");
-    const form2 = (document.getElementById("container2").style.display =
-      "block");
+  $('#btCarType').click(function () {
+    const form1 = (document.getElementById('container1').style.display =
+      'none');
+    const form2 = (document.getElementById('container2').style.display =
+      'block');
   });
 
-  $("#btWasher").click(function () {
-    const form1 = (document.getElementById("container1").style.display =
-      "none");
-    const form2 = (document.getElementById("container3").style.display =
-      "block");
+  $('#btWasher').click(function () {
+    const form1 = (document.getElementById('container1').style.display =
+      'none');
+    const form2 = (document.getElementById('container3').style.display =
+      'block');
   });
 
-  $("#lblogin").click(function () {
-    const form1 = (document.getElementById("container1").style.display =
-      "block");
-    const form2 = (document.getElementById("container2").style.display =
-      "none");
+  $('#lblogin').click(function () {
+    const form1 = (document.getElementById('container1').style.display =
+      'block');
+    const form2 = (document.getElementById('container2').style.display =
+      'none');
   });
 
-  $("#lblogin2").click(function () {
-    const form1 = (document.getElementById("container1").style.display =
-      "block");
-    const form2 = (document.getElementById("container2").style.display =
-      "none");
+  $('#lblogin2').click(function () {
+    const form1 = (document.getElementById('container1').style.display =
+      'block');
+    const form2 = (document.getElementById('container2').style.display =
+      'none');
   });
 
-  $("#lblogin3").click(function () {
-    const form1 = (document.getElementById("container1").style.display =
-      "block");
-    const form2 = (document.getElementById("container3").style.display =
-      "none");
+  $('#lblogin3').click(function () {
+    const form1 = (document.getElementById('container1').style.display =
+      'block');
+    const form2 = (document.getElementById('container3').style.display =
+      'none');
   });
 
-  $("#lblogin4").click(function () {
-    const form1 = (document.getElementById("container3").style.display =
-      "block");
-    const form2 = (document.getElementById("container4").style.display =
-      "none");
+  $('#lblogin4').click(function () {
+    const form1 = (document.getElementById('container3').style.display =
+      'block');
+    const form2 = (document.getElementById('container4').style.display =
+      'none');
   });
 
-  $("#lbnewuser").click(function () {
- 
-    const form1 = (document.getElementById("container3").style.display =
-      "block");
-    const form2 = (document.getElementById("container1").style.display =
-      "none");
+  $('#lbnewuser').click(function () {
+    const form1 = (document.getElementById('container3').style.display =
+      'block');
+    const form2 = (document.getElementById('container1').style.display =
+      'none');
   });
 
-  $("#lbforgot").click(function () {
-  
-    const form1 = (document.getElementById("container2").style.display =
-      "block");
-    const form2 = (document.getElementById("container1").style.display =
-      "none");
+  $('#lbforgot').click(function () {
+    const form1 = (document.getElementById('container2').style.display =
+      'block');
+    const form2 = (document.getElementById('container1').style.display =
+      'none');
   });
-
 });
 
 function myAjax1() {
   $.ajax({
-    type: "post",
+    type: 'post',
     data: {
       id: id,
     },
     cache: false,
-    url: "",
-    dataType: "text",
+    url: '',
+    dataType: 'text',
     success: function (data, status) {
       //alert(data);
     },
@@ -190,36 +169,36 @@ function myAjax1() {
 }
 function sendOTP() {
   $.ajax({
-    type: "post",
+    type: 'post',
     data: {
       code: localEmailCode,
-      receiver:nEmail
+      receiver: nEmail,
     },
     cache: false,
-    url: "sendEmailOTP.php",
-    dataType: "text",
+    url: 'sendEmailOTP.php',
+    dataType: 'text',
     success: function (data, status) {
-      alert(data);
+     
+      $("#useremail").text(nEmail)
     },
     error: function (xhr, status, error) {
-       alert(error);
+      alert(error);
     },
   });
 }
 
 function getOTP() {
   $.ajax({
-    type: "post",
+    type: 'post',
     cache: false,
-    url: "indexC32.php",
-    dataType: "text",
+    url: 'indexC32.php',
+    dataType: 'text',
     success: function (data, status) {
-  
-      localEmailCode=data;
+      localEmailCode = data;
       sendOTP();
     },
     error: function (xhr, status, error) {
-       alert(error);
+      alert(error);
     },
   });
 }
@@ -230,14 +209,14 @@ function saveNewUser() {
   if (nPassword != nConfirm) {
     //alert(1)
     showAEMerror(
-      "CONFRIM PASSWORD DO NOT MATCH WITH PASSWORD",
-      "PASSWORD MISMATCH"
+      'CONFRIM PASSWORD DO NOT MATCH WITH PASSWORD',
+      'PASSWORD MISMATCH'
     );
     return;
   }
 
   $.ajax({
-    type: "post",
+    type: 'post',
     data: {
       nRegCode: nRegCode,
       nFullname: nFullname,
@@ -247,25 +226,25 @@ function saveNewUser() {
       nPassword: nPassword,
     },
     cache: false,
-    url: "indexC3.php",
-    dataType: "text",
+    url: 'indexC3.php',
+    dataType: 'text',
     success: function (data, status) {
       // alert(data)
       hideSpin();
       if (data == 1) {
         showAEMsuccessw();
       } else if (data == 3) {
-        $("#nUsername").val("");
+        $('#nUsername').val('');
         showAEMerror(
-          "Please use a different username",
-          "username already taken"
+          'Please use a different username',
+          'username already taken'
         );
         return;
       } else if (data == 4) {
-        $("#nRegCode").val("");
+        $('#nRegCode').val('');
         showAEMerror(
-          "PLEASE YOUR REGISTRATION CODE IS NOT VALID.",
-          "INVALID REGISTRATION CODE"
+          'PLEASE YOUR REGISTRATION CODE IS NOT VALID.',
+          'INVALID REGISTRATION CODE'
         );
         return;
       }
@@ -278,18 +257,18 @@ function saveNewUser() {
 function sendPassword(username, password) {
   showSpin();
   $.ajax({
-    type: "post",
+    type: 'post',
     data: {
       receiver: emailresend,
       username: username,
       password: password,
     },
     cache: false,
-    url: "sendEmaiLPassword.php",
-    dataType: "text",
+    url: 'sendEmaiLPassword.php',
+    dataType: 'text',
     success: function (data, status) {
       hideSpin();
-      showAEMsuccess("Password recovery sent successfully!");
+      showAEMsuccess('Password recovery sent successfully!');
     },
     error: function (xhr, status, error) {
       alert(error);
@@ -299,16 +278,16 @@ function sendPassword(username, password) {
 
 function getLoginDetails() {
   $.ajax({
-    type: "post",
+    type: 'post',
     data: {
       email: emailresend,
     },
     cache: false,
-    url: "indexC2.php",
-    dataType: "text",
+    url: 'indexC2.php',
+    dataType: 'text',
     success: function (data, status) {
       if (!aeEmpty(data)) {
-        var output = data.split("|");
+        var output = data.split('|');
         var username = output[0];
         var password = output[1];
         // alert(username);
@@ -325,61 +304,57 @@ function getLoginDetails() {
 
 function getuser() {
   $.ajax({
-    type: "post",
+    type: 'post',
     data: {
       username: username,
       password: password,
     },
     cache: false,
-    url: "index__.php",
-    dataType: "text",
+    url: 'index__.php',
+    dataType: 'text',
     success: function (data, status) {
       hideSpin();
-      
 
       if (data == 900) {
-        openPageReplace("adminPage.php");
-        return
+        openPageReplace('adminPage.php');
+        return;
       }
       if (data == 1) {
-        openPageReplace("userPage.php");
-        return
-      } 
-
-      else {
-
-        showAEMerror("Invalid login attempt try again","Invalid login attempt")
-  
+        openPageReplace('userPage.php');
+        return;
+      } else {
+        showAEMerror(
+          'Invalid login attempt try again',
+          'Invalid login attempt'
+        );
       }
     },
     error: function (xhr, status, error) {
       alert(error);
 
-      $("#error").css("display", "block");
+      $('#error').css('display', 'block');
 
-      $("#container").height("22rem");
+      $('#container').height('22rem');
     },
   });
 }
 
-
-
 function getInput() {
-  username = $("#username").val();
-  emailresend = $("#emailresend").val();
-  password = $("#password").val();
+  username = $('#username').val();
+  emailresend = $('#emailresend').val();
+  password = $('#password').val();
   username = trimV(username);
   password = trimV(password);
   emailresend = trimV(emailresend);
 
   // new user
-  nRegCode = $("#nRegCode").val();
-  nFullname = $("#nFullname").val();
-  nEmail = $("#nEmail").val();
-  nMobile = $("#nMobile").val();
-  nUsername = $("#nUsername").val();
-  nPassword = $("#nPassword").val();
-  nConfirm = $("#nConfirm").val();
+  nRegCode = $('#nRegCode').val();
+  nFullname = $('#nFullname').val();
+  nEmail = $('#nEmail').val();
+  nMobile = $('#nMobile').val();
+  nUsername = $('#nUsername').val();
+  nPassword = $('#nPassword').val();
+  nConfirm = $('#nConfirm').val();
 
   nRegCode = trimV(nRegCode);
   nFullname = trimV(nFullname);
@@ -396,7 +371,7 @@ function getInput() {
 
 function validate_mobile_g(mobile) {
   var phoneRe = /^[0-9]{10}$/;
-  var digits = mobile.replace(/\D/g, "");
+  var digits = mobile.replace(/\D/g, '');
   return phoneRe.test(digits);
 }
 
@@ -409,7 +384,7 @@ const validateEmail = (email) => {
 };
 
 function aeEmpty(e) {
-  var ee = "";
+  var ee = '';
   try {
     ee = e.trim();
   } catch (error) {
@@ -417,9 +392,9 @@ function aeEmpty(e) {
   }
   try {
     switch (e) {
-      case "":
+      case '':
       case 0:
-      case "0":
+      case '0':
       case null:
       case false:
       case undefined:
@@ -437,24 +412,24 @@ function isNumber(n) {
 }
 
 function showErrorText(message) {
-  $("#error_message").text(message);
-  $("#error_message").show();
+  $('#error_message').text(message);
+  $('#error_message').show();
 }
 
 function hideErrorText() {
-  $("#error_message").text("");
-  $("#error_message").hide();
+  $('#error_message').text('');
+  $('#error_message').hide();
 }
 
 function showSpin() {
-  document.getElementById("spin").style.visibility = "visible";
+  document.getElementById('spin').style.visibility = 'visible';
 }
 function hideSpin() {
-  document.getElementById("spin").style.visibility = "hidden";
+  document.getElementById('spin').style.visibility = 'hidden';
 }
 
 function openPage_blank(url) {
-  window.open(url, "_blank");
+  window.open(url, '_blank');
 }
 function openPage(url) {
   window.open(url);
@@ -462,42 +437,42 @@ function openPage(url) {
 
 function showAEMsuccess(aeBody, aeTitle) {
   if (!aeEmpty(aeTitle)) {
-    $("#aeAlertTitle").text(aeTitle);
+    $('#aeAlertTitle').text(aeTitle);
   }
 
   if (!aeEmpty(aeBody)) {
-    $("#aeAlertBody").text(aeBody);
+    $('#aeAlertBody').text(aeBody);
   }
-  $("#aeMsuccess").modal("show");
+  $('#aeMsuccess').modal('show');
 }
 
 function showAEMsuccessw(aeBody, aeTitle) {
   if (!aeEmpty(aeTitle)) {
-    $("#aeAlertTitlew").text(aeTitle);
+    $('#aeAlertTitlew').text(aeTitle);
   }
 
   if (!aeEmpty(aeBody)) {
-    $("#aeAlertBodyw").text(aeBody);
+    $('#aeAlertBodyw').text(aeBody);
   }
-  $("#aeMsuccessw").modal("show");
+  $('#aeMsuccessw').modal('show');
 }
 
 function showAEMerror(aeBody, aeTitle) {
   if (!aeEmpty(aeTitle)) {
-    $("#aeMerrorTitle").text(aeTitle);
+    $('#aeMerrorTitle').text(aeTitle);
   }
 
   if (!aeEmpty(aeBody)) {
-    $("#aeMerrorBody").text(aeBody);
+    $('#aeMerrorBody').text(aeBody);
   }
-  $("#aeMerror").modal("show");
+  $('#aeMerror').modal('show');
 }
 
 function showMYesNo(aeBody) {
   if (!aeEmpty(aeBody)) {
-    $("#aeMBody").text(aeBody);
+    $('#aeMBody').text(aeBody);
   }
-  $("#aeMyesNo").modal("show");
+  $('#aeMyesNo').modal('show');
 }
 
 function passwordConfirm(a, b) {
@@ -516,10 +491,10 @@ function refreshPage() {
 }
 
 function showCodeField() {
-  $("#codeHide").show();
+  $('#codeHide').show();
 }
 function hideCodeField() {
-  $("#codeHide").hide();
+  $('#codeHide').hide();
 }
 
 function validateGhanaCard(ghanaCard) {
@@ -539,7 +514,7 @@ function validateGhanaCard(ghanaCard) {
 
   ii = ghanaCard.substring(0, 4);
 
-  if (!passwordConfirm(ii, "GHA-")) {
+  if (!passwordConfirm(ii, 'GHA-')) {
     return false;
   }
 
@@ -554,9 +529,9 @@ function validatePassword(password) {
   var passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
   var m =
-    "must be at least 8 characters long " +
-    " and contains at least one lowercase letter, one " +
-    "uppercase letter, one number, and one special character";
+    'must be at least 8 characters long ' +
+    ' and contains at least one lowercase letter, one ' +
+    'uppercase letter, one number, and one special character';
 
   return passwordRegex.test(password);
 }
@@ -564,12 +539,12 @@ function validatePassword(password) {
 function checkImageFileSize(id) {
   var file = document.getElementById(id).files[0];
   if (file.size > 1258291) {
-    showAEMerror("FILE TOO LARGE");
+    showAEMerror('FILE TOO LARGE');
 
     return false;
   }
-  if (!file.type.startsWith("image/")) {
-    showAEMerror("CHOOSE IMAGE FILE ONLY");
+  if (!file.type.startsWith('image/')) {
+    showAEMerror('CHOOSE IMAGE FILE ONLY');
     return false;
   }
   return true;
@@ -587,27 +562,27 @@ function isFilePDF(fileId) {
     var size = file.size / 1024 / 1024; // size in MB
     var type = file.type;
 
-    if (type !== "application/pdf") {
-      aeModelTitle = "CHOOSE PDF ONLY";
-      aeModelBody = "ONLY PDF FILES ARE ALLOWED";
+    if (type !== 'application/pdf') {
+      aeModelTitle = 'CHOOSE PDF ONLY';
+      aeModelBody = 'ONLY PDF FILES ARE ALLOWED';
 
-      $("#aeMBody").text(aeModelBody);
-      $("#aeMTitle").text(aeModelTitle);
-      $("#aeModelPassive").modal("show");
+      $('#aeMBody').text(aeModelBody);
+      $('#aeMTitle').text(aeModelTitle);
+      $('#aeModelPassive').modal('show');
 
-      document.getElementById(fileId).value = "";
+      document.getElementById(fileId).value = '';
       return false;
       return false;
     } else if (size > 2) {
-      aeModelTitle = "PICTURE SIZE TOO LARGE";
+      aeModelTitle = 'PICTURE SIZE TOO LARGE';
       aeModelBody =
-        "Your picture size is too large." +
-        "we can only accept pictures that are not more than 2mb";
+        'Your picture size is too large.' +
+        'we can only accept pictures that are not more than 2mb';
 
-      $("#aeMBody").text(aeModelBody);
-      $("#aeMTitle").text(aeModelTitle);
-      $("#aeModelPassive").modal("show");
-      document.getElementById(fileId).value = "";
+      $('#aeMBody').text(aeModelBody);
+      $('#aeMTitle').text(aeModelTitle);
+      $('#aeModelPassive').modal('show');
+      document.getElementById(fileId).value = '';
 
       return false;
       return false;
@@ -623,25 +598,28 @@ function isFileImage(fileId) {
     var file = input.files[0];
     var size = file.size / 1024 / 1024; // size in MB
     var type = file.type;
-    if (!type.startsWith("image")) {
-      aeModelTitle = "ONLY IMAGE FILE ALLOWED";
-      aeModelBody = "Please Choose Image File";
-      $("#aeMBody").text(aeModelBody);
-      $("#aeMTitle").text(aeModelTitle);
-      $("#aeModelPassive").modal("show");
-      document.getElementById(fileId).value = "";
+    if (!type.startsWith('image')) {
+      aeModelTitle = 'ONLY IMAGE FILE ALLOWED';
+      aeModelBody = 'Please Choose Image File';
+      $('#aeMBody').text(aeModelBody);
+      $('#aeMTitle').text(aeModelTitle);
+      $('#aeModelPassive').modal('show');
+      document.getElementById(fileId).value = '';
 
       return false;
     } else if (size > 2) {
-      aeModelTitle = "FILE TOO LARGE";
-      aeModelBody = "Please Your file is too large";
-      $("#aeMBody").text(aeModelBody);
-      $("#aeMTitle").text(aeModelTitle);
-      $("#aeModelPassive").modal("show");
-      document.getElementById(fileId).value = "";
+      aeModelTitle = 'FILE TOO LARGE';
+      aeModelBody = 'Please Your file is too large';
+      $('#aeMBody').text(aeModelBody);
+      $('#aeMTitle').text(aeModelTitle);
+      $('#aeModelPassive').modal('show');
+      document.getElementById(fileId).value = '';
       return false;
     } else {
       return true;
     }
   }
 }
+$('#exitIcon').click(function () {
+  openPageReplace('index.php');
+});

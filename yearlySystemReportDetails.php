@@ -3,23 +3,11 @@ include "config.php";
 require __DIR__ . '/vendor/autoload.php';
 
 
-$workerName=$_POST["workerName"];
-$workerDays=$_POST["workerDays"];
-$managerMobile=null;
-$managerEmail=null;
-$managerLoc=null;
+//$workerName=$_POST["workerName"];
+$sysDays=$_POST["sysDays"];
+$total_difference=null;
 
 
-$sql = "SELECT * FROM user1 WHERE fullname=?";
-$stmt = $conn->prepare($sql); 
-$stmt->bind_param("s", $workerName);
-$stmt->execute();
-$result = $stmt->get_result();
-while ($row = $result->fetch_assoc()) {
-    $managerMobile=$row["mobile"];
-    $managerEmail=$row["email"];
-    $managerLoc=$row["location"];
-}
 
 
 
@@ -28,18 +16,17 @@ while ($row = $result->fetch_assoc()) {
 // Retrieve data from the 'washed' table
 $sql = "SELECT 
 location, 
-washer, 
-DATE_FORMAT(recdate, '%M, %Y') AS workDay, 
+washer,
+locationUser,
+DATE_FORMAT(recdate, '%Y') AS workDay, 
 carNumber AS cars_worked, 
 washeramount AS washer_amount, 
 amount AS total_amount,
 `action`
 FROM washed 
 WHERE 
-locationUser = '$workerName' 
-AND recdate BETWEEN DATE_SUB(NOW(), INTERVAL $workerDays MONTH) AND NOW() order by recdate asc
+recdate BETWEEN DATE_SUB(NOW(), INTERVAL $sysDays YEAR) AND NOW() order by recdate asc
 ";
-
 
 $result = $conn->query($sql);
 // Initialize the PDF document
@@ -47,12 +34,8 @@ $pdf = new FPDF('L', 'mm', 'A4');
 $pdf->AddPage();
 $pdf->SetFont('Arial', 'BU', 16);
 
-$pdf->Cell(0, 10, 'Location Manager Daily Report Details', 0, 1, 'C');
+$pdf->Cell(0, 10, 'System Yearly Report Details', 0, 1, 'C');
 $pdf->SetFont('Arial', 'B', 12);
-
-$pdf->Cell(0, 10, 'Manager Name:'.$workerName, 0, 1, 'C');
-$pdf->Cell(0, 10, 'Mobile:'.$managerMobile, 0, 1, 'C');
-$pdf->Cell(0, 10, 'Email:'.$managerEmail, 0, 1, 'C');
 
 $pdf->SetFont('Arial', 'B', 12);
 $pdf->SetTextColor(255, 0, 0);
@@ -63,6 +46,8 @@ $pdf->SetTextColor(0, 0, 0);
 
 $current_location = null;
 $workDay2 = null;
+$U2=null;
+$Us2=null;
 $total_cars = 0;
 $total_washer_amount = 0;
 $total_amount = 0;
@@ -70,48 +55,44 @@ $total_amount = 0;
 $valid=false;
 
 while ($row = $result->fetch_assoc()) {
-    $t=$row['total_amount'];
-
-if($t>0){
     $w=$row['workDay'];
-    if ($w!= $workDay2) {
-        $workDay2=$w;
+    $U=$row["location"];
+    $Us=$row["locationUser"];
 
+    
+
+    if ($workDay2!==$w) {
+    
         // Start a new table for each location
-        if ($w !== null  ) { 
+        if ($w!==null) { 
+      
+
+            //echo $w;
             $valid=true;
+
             // Add a summary row for the previous location
-            $pdf->SetFont('Arial', 'B', 12);
-            if($total_amount!=0){
+            if($total_amount>0){
+                $pdf->SetFont('Arial', 'B', 12);
                 $pdf->Cell(90, 10, 'Total', 1, 0, 'R');
+                $pdf->SetFont('Arial', '', 12);
+                $pdf->SetFont('Arial', 'B', 12);
+                $pdf->SetTextColor(255, 0, 0);
+                
+                $pdf->Cell(35, 10, $total_cars, 1, 0, 'C');
+                $pdf->Cell(35, 10, "     ", 1, 0, 'C');
+                $pdf->Cell(45, 10, $total_washer_amount, 1, 0, 'C');
+                $pdf->Cell(35, 10, $total_amount, 1, 0, 'C');
+                $pdf->Cell(35, 10, $total_difference, 1, 1, 'C');
             }
-        
+            
+            $pdf->Ln();
+            $pdf->SetTextColor(0, 0, 0);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->SetTextColor(255, 0, 0);
 
-   
-       if($total_amount!=0){
-        $pdf->Cell(35, 10, $total_cars, 1, 0, 'C');
-        $pdf->Cell(35, 10, "     ", 1, 0, 'C');
-        $pdf->Cell(45, 10, $total_washer_amount, 1, 0, 'C');
-        $pdf->Cell(35, 10, $total_amount, 1, 0, 'C');
-        $pdf->Cell(35, 10, $total_difference, 1, 1, 'C');
-
-        $pdf->Ln();
-        $pdf->SetTextColor(0, 0, 0);
-        $pdf->SetFont('Arial', '', 12);
-       }
-       else{
-        $pdf->Ln();
-        $pdf->SetTextColor(0, 0, 0);
-        $pdf->SetFont('Arial', '', 12);
-       }
         }
 
         $pdf->SetFont('Arial', 'B', 14);
-        $pdf->Cell(0, 10, "location: ". $row['location'], 0, 1, 'L');
-        $pdf->Cell(0, 10, "MONTH: ". $row['workDay'], 0, 1, 'L');
+        $pdf->Cell(0, 10, "YEAR: ". $row['workDay'], 0, 1, 'L');
         $pdf->SetFont('Arial', 'B', 12);
         $pdf->Cell(90, 10, 'worker', 1, 0, 'C');
         $pdf->Cell(35, 10, 'Car NO#', 1, 0, 'C');
@@ -120,18 +101,16 @@ if($t>0){
         $pdf->Cell(35, 10, 'Amount', 1, 0, 'C');
         $pdf->Cell(35, 10, 'Difference', 1, 1, 'C');
       
-
-        $current_location = $row['location'];
+        $workDay2=$w;
         $current_day = $row['workDay'];
         $total_cars = 0;
         $total_washer_amount = 0;
         $total_amount = 0;
         $total_difference = 0;
+
     }
 
     $pdf->SetFont('Arial', '', 12);
-    
- 
 
     $pdf->Cell(90, 10, $row['washer'], 1, 0, 'L');
     $pdf->Cell(35, 10, $row['cars_worked'], 1, 0, 'C');
@@ -151,12 +130,7 @@ if($t>0){
 }
 
 
-}
-
-
-
-if (!$valid){
-
+if(!$valid){
     echo 0;
    exit;
 }
@@ -230,7 +204,7 @@ $pdf->Cell(0, 10, "Date Printed: ". getCurrentDateFormatted(), 0, 1, 'C');
 
 
 // Output the PDF
-$pdf->Output('F','report/managerMonthlyReport.pdf');
+$pdf->Output('F','report/systemYearlyReport.pdf');
 
 
 

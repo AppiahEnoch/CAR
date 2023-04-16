@@ -1,5 +1,5 @@
 <?php
-//include "checkAdmin.php";
+include "checkUser.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,17 +62,17 @@
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item">
-                <a href="index.php" id="logout" class="nav-link"> Log out</a>
+                <a href="login.php" id="logout" class="nav-link"> Log out</a>
               </li>
               <li class="nav-item">
                 <a id="ll1" class="nav-link" href="washCarPage.php">
-                
+                <i class="fa fa-tint" aria-hidden="true"></i>
                   Wash Car</a
                 >
               </li>
               <li class="nav-item ">
                 <a id="ll1" class="nav-link" href="addWasher.php">
-                
+                <i class="fa fa-user-circle" aria-hidden="true"></i>
                   Add Washer</a
                 >
               </li>
@@ -119,14 +119,14 @@
                 <li
                   class="list-group-item d-flex justify-content-between align-items-center"
                 >
-                Total cars washed
-                  <span class="badge badge-secondary text-muted">00</span>
+                Total Services
+                  <span id="totalServices" class="badge badge-secondary text-muted">00</span>
                 </li>
                 <li
                   class="list-group-item d-flex justify-content-between align-items-center"
                 >
                   Total money received
-                  <span class="badge badge-secondary text-muted">00</span>
+                  <span  id="totalServiceMoney" class="badge badge-secondary text-muted">00</span>
                 </li>
           
               </ul>
@@ -139,133 +139,6 @@
         </div>
         
         
-        <div class="col-lg-6 col-md-12">
-
-          <div class="card">
-            <div class="card-body">
-              <label class="myTitle">Three days ago</label>
-              <ul class="list-group">
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center"
-                >
-                Total cars washed
-                  <span class="badge badge-secondary text-muted">00</span>
-                </li>
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center"
-                >
-                Total money received
-                  <span class="badge badge-secondary text-muted">00</span>
-                </li>
-        
-              </ul>
-            </div>
-          </div>
-
-
-
-
-        </div>
-
-        <div class="col-lg-6 col-md-12">
-
-          <div class="card">
-            <div class="card-body">
-              <label class="myTitle">This week</label>
-              <ul class="list-group">
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center"
-                >
-                Total cars washed
-                  <span class="badge badge-secondary text-muted">00</span>
-                </li>
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center"
-                >
-                Total money received
-                  <span class="badge badge-secondary text-muted">00</span>
-                </li>
-         
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-6 col-md-12">
-
-          <div class="card">
-            <div class="card-body">
-              <label class="myTitle">This Month</label>
-              <ul class="list-group">
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center"
-                >
-                Total cars washed
-                  <span class="badge badge-secondary text-muted">00</span>
-                </li>
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center"
-                >
-                Total money received
-                  <span class="badge badge-secondary text-muted">00</span>
-                </li>
-         
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-6 col-md-12">
-
-          <div class="card">
-            <div class="card-body">
-              <label class="myTitle">Three Months</label>
-              <ul class="list-group">
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center"
-                >
-                Total cars washed
-                  <span class="badge badge-secondary text-muted">00</span>
-                </li>
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center"
-                >
-                Total money received
-                  <span class="badge badge-secondary text-muted">00</span>
-                </li>
-         
-              </ul>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="col-lg-6 col-md-12">
-          <div class="card">
-            <div class="card-body">
-              <label class="myTitle">This year</label>
-              <ul class="list-group">
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center"
-                >
-                Total cars washed
-                  <span class="badge badge-secondary text-muted">00</span>
-                </li>
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center"
-                >
-                Total money received
-                  <span class="badge badge-secondary text-muted">00</span>
-                </li>
-       
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <footer id="myFooter" class="py-0 fixed-bottom">
       <div class="container">
         <span class="text-bg-success">&COPY;2023 All rights reserved</span>
@@ -277,5 +150,8 @@
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
     ></script>
+
+    <script src="userPage.js"></script>
+    <script src="jf.js"></script>
   </body>
 </html>

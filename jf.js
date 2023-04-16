@@ -385,5 +385,22 @@ function aeDownload(filePath) {
 }
 
 
+function aeDeleteOptionsModal(show) {
+  // Get the modal element
+  const modal = document.getElementById('aeMDeleteOptions');
+
+  if (show) {
+    // Show the modal
+    const modalInstance = new bootstrap.Modal(modal);
+    modalInstance.show();
+  } else {
+    // Hide the modal
+    const modalInstance = bootstrap.Modal.getInstance(modal);
+    modalInstance.hide();
+  }
+}
+
+
+
 
 

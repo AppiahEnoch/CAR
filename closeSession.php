@@ -2,9 +2,6 @@
 // start session
 session_start();
 
-// check if index.php is opened
-if(basename($_SERVER['PHP_SELF']) === 'index.php') {
-
   // unset all session variables
   $_SESSION = array();
 
@@ -19,6 +16,4 @@ if(basename($_SERVER['PHP_SELF']) === 'index.php') {
         $params["secure"], $params["httponly"]
     );
   }
-}
-
 
