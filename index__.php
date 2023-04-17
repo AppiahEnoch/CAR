@@ -1,6 +1,8 @@
 <?php
 require_once 'config.php';
 
+
+
 $v1="username";
 $v2="password";
 $pageNumber=0;
@@ -10,6 +12,7 @@ if (!isset($_SESSION)) {
   session_start();
 
 }
+
 
 
 $username= cleanInput($_POST[$v1]);

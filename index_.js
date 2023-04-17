@@ -315,6 +315,8 @@ function getuser() {
     success: function (data, status) {
       hideSpin();
 
+  
+
       if (data == 900) {
         openPageReplace('adminPage.php');
         return;
