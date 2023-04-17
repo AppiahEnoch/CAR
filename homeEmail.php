@@ -1,6 +1,6 @@
 <?php  
 require 'vendor/autoload.php';
-require_once "ENV/env.php";
+require_once "../ENV/env.php";
 
 
 

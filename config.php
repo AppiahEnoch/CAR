@@ -1,21 +1,20 @@
 <?php
+require_once('../ENV/env.php');
 
 $conn ="";
 
-        $DBhostname = "localhost";
-        $DBusername = "root";
-        $DBpassword = "";
-        $database = "car";
-        $DBport = "63943";  
+
 
 $remote_addr = $_SERVER['REMOTE_ADDR'];
 $remote_host = gethostbyaddr($remote_addr);
 
-if($remote_host=="AECleanCodes"){
+
+
+
+
+if($remote_host=="AECleanCodes1"){
 
     try {
-
-
        $conn = mysqli_connect($DBhostname, $DBusername, $DBpassword, $database,$DBport) or die("Database connection failed");
  
     } catch (Throwable $th) {
@@ -27,11 +26,12 @@ exit;
 }
 
 
+
+
 // remote server
 
     try {
 
-echo 222222;
         $DBhostname = "localhost";
         $DBusername = "crystaon_AECleanCodes";
         $DBpassword = "BGpwsS3i6aL5";
