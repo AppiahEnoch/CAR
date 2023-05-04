@@ -27,10 +27,10 @@ else{
 
     try {
 
-        $DBhostname = "localhost";
-        $DBusername = "crystaon_AECleanCodes";
-        $DBpassword = "BGpwsS3i6aL5";
-        $database = "crystaon_car";
+        $DBhostname = "crysta.online";
+        $DBusername = "crystaon_1";
+        $DBpassword = "6t@BEd8ar~O$";
+        $database = "crystaon_1";
     
 
        $conn = mysqli_connect($DBhostname, $DBusername, $DBpassword, $database) or die("Database connection failed");
