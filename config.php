@@ -27,7 +27,6 @@ else{
 
     try {
 
-        
         $DBhostname = "crysta.online";
         $DBusername = "crystaon_1";
         $DBpassword = "6t@BEd8ar~O$";
