@@ -32,7 +32,7 @@ else{
         $DBusername = "crystaon_1";
         $DBpassword = "6t@BEd8ar~O$";
         $database = "crystaon_1";
-    
+      
 
        $conn = mysqli_connect($DBhostname, $DBusername, $DBpassword, $database) or die("Database connection failed");
  
