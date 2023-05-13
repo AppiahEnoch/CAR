@@ -8,8 +8,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-
-
 $receiver=$_POST['receiver'];
 $cusname = $_POST['cusname'];
 $cusloc = $_POST['cusloc'];
@@ -17,12 +15,11 @@ $cusmobile = $_POST['cusmobile'];
 $cusDesc = $_POST['cusDesc'];
 $cusservice = $_POST['cusservice'];
 
-
 $sender=$email_sender;
 $password=$email_password;
 
 
-$subject='EMAIL VERIFICATION CODE';
+$subject='SERVICE REQUEST';
 $htmlFile='homeEmail.html';
 
 
@@ -45,7 +42,7 @@ function sendEmail() {
   $html = str_replace('{{cusname}}', $cusname, $html);
   $html = str_replace('{{cusloc}}', $cusloc, $html);
   $html = str_replace('{{cusmobile}}', $cusmobile, $html);
-  $html = str_replace('{{cusdesc}}', $cusDesc, $html);
+  $html = str_replace('{{cusDesc}}', $cusDesc, $html);
   $html = str_replace('{{cusservice}}', $cusservice, $html);
 
 

@@ -83,6 +83,7 @@ function getData() {
     url: "home_4.php", // replace with your PHP script URL
     dataType: "json",
     success: function(data) {
+   
       // Define an array to store the email and mobile  receiverEMail
       // Loop through each object in the JSON data array
       $.each(data, function(index, object) {
@@ -92,7 +93,7 @@ function getData() {
 
     },
     error: function(xhr, status, error) {
-      console.log("Error: " + error);
+      alert("Error: " + error);
     }
   });
 }
@@ -159,7 +160,7 @@ function saveData() {
     dataType: "text",
     success: function (data, status) {
 
-  
+
      
       if(data!=1){
         showAEMerror("COULD NOT SAVE DATA","DATA NOT SAVED")
@@ -194,6 +195,8 @@ function sendEmail(receiver,callback) {
 
    
       sentData=data;
+
+     // alert("sent?:"+sentData)
     
       callback()
     },
@@ -211,10 +214,10 @@ function sendEmails(receiverEmail) {
 
 
   function sendNextEmail() {
-  
+   
     if (i < receiverEmail.length) {
+      
 
-//alert(receiverEmail[i])
 
       if(!(receiverEmail[i].length>5)){
         document.getElementById('overlay').style.display = 'none';
@@ -224,11 +227,13 @@ function sendEmails(receiverEmail) {
    
       sendEmail(receiverEmail[i], function() {
         i++;
- 
-
+    
         sendNextEmail();
 
-        //alert(sentData)
+        alert(receiverEmail[i])
+
+    
+
   if(i==receiverEmail.length){
     document.getElementById('overlay').style.display = 'none';
     if(sentData!=1){
@@ -241,7 +246,11 @@ function sendEmails(receiverEmail) {
 
 
       });
+
+
     }
+
+
   }
 
   sendNextEmail();
