@@ -17,4 +17,4 @@ jobs:
         server: ${{ secrets.SERVER_NAME}}
         username: ${{ secrets.USERNAME}}
         password: ${{ secrets.SERVER_PASSWORD}}
-         server-dir: public_html
+        server-dir: public_html
