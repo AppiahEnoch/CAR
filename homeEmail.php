@@ -65,19 +65,8 @@ function sendEmail() {
   $mail->addAddress($receiver);
   $mail->Subject = $subject;
 
-
-
-
-
-
-
-
-
-
   $mail->msgHTML($html);
 
-
-  
   if (!$mail->send()) {
   
       echo "Error: " . $mail->ErrorInfo;
