@@ -23,7 +23,6 @@ else{
 
     try {
         
-
         $DBhostname = "";
         $DBusername = "";
         $DBpassword = "";
