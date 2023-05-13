@@ -22,8 +22,6 @@ $password=$email_password;
 $subject='SERVICE REQUEST';
 $htmlFile='homeEmail.html';
 
-
-
 $host="smtp.gmail.com";
 $port="587";
 
