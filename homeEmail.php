@@ -29,7 +29,6 @@ $port="587";
 
 
 sendEmail();
-
 function sendEmail() {
   
   global $sender,$receiver,$password,$port,
