@@ -36,7 +36,6 @@ function sendEmail() {
   $mail = new PHPMailer;
   $html = file_get_contents($htmlFile);
 
-
   // modify file
   $html = str_replace('{{cusname}}', $cusname, $html);
   $html = str_replace('{{cusloc}}', $cusloc, $html);
