@@ -17,4 +17,6 @@ jobs:
         server: ${{ secrets.SERVER_NAME}}
         username: ${{ secrets.USERNAME}}
         password: ${{ secrets.SERVER_PASSWORD}}
+        remote-dir: "./public_html"
+        
      
