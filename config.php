@@ -21,9 +21,8 @@ if($remote_host=="AECleanCodes1"){
 }
 else{
 
-    
-    try {
 
+    try {
         $DBhostname = "";
         $DBusername = "";
         $DBpassword = "";
