@@ -9,6 +9,8 @@ $remote_host = gethostbyaddr($remote_addr);
 
 
 
+
+
 if($remote_host=="AECleanCodes1"){
   
     try {
@@ -21,13 +23,12 @@ if($remote_host=="AECleanCodes1"){
 }
 else{
 
-    
-
     try {
-        $DBhostname = "";
-        $DBusername = "";
-        $DBpassword = "";
-        $database = "";
+
+        $DBhostname = "crysta.online";
+        $DBusername = "crystao1_db1";
+        $DBpassword = "p3s4xgUH5!3V";
+        $database = "crystao1_db1";
        $conn = mysqli_connect($DBhostname, $DBusername, $DBpassword, $database) or die("Database connection failed");
  
     } catch (Throwable $th) {
