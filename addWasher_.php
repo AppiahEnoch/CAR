@@ -32,14 +32,11 @@ $stmt->bind_param("sssss", $nFullname, $nEmail, $nMobile,$location1,$ghana);
  $stmt->execute();
 
  echo 1;
-
-
  $conn->close();
-
  exit;
 
 
-
+//code exit
 
 
 
