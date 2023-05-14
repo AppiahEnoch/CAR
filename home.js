@@ -104,11 +104,9 @@ function init() {
     type: "post",
     cache: false,
     url: "home_2.php",
-    dataType: "text",
+    dataType: "json",
     success: function (data, status) {
 
-     alert(data);
-     return 
       $("#gmanager").text(data[0]);
     },
     error: function (xhr, status, error) {
