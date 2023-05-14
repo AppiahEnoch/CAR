@@ -1,7 +1,4 @@
-on: 
-   push:
-        branches:
-            - master
+on: push
 name: 🚀 Deploy website on push
 jobs:
   web-deploy:
@@ -17,6 +14,3 @@ jobs:
         server: ftp.crysta.online
         username: b@crysta.online
         password: E]g@Fgw4nUUk
-   
-        
-     
