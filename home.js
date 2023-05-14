@@ -28,8 +28,8 @@ $(document).ready(function () {
 
 
     init()
-    getData()
-    getManager()
+    //getData()
+    //getManager()
    
 
 
