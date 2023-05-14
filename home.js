@@ -16,13 +16,13 @@ $(document).ready(function () {
   document.getElementById('overlay').style.display = 'none';
   $("#form").submit(function (e) {
     e.preventDefault();
-   /// getInputE()
-  //  saveData();
+   getInputE()
+  saveData();
   
   });
 
 
-    //init()
+    init()
     //getData()
     //getManager()
    

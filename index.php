@@ -376,7 +376,7 @@ include "closeSession.php";
     crossorigin="anonymous"></script>
 
     <script src="jf.js"></script>
-  
+    <script src="home.js"></script>
 
 </body>
 </html>
