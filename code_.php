@@ -22,5 +22,9 @@ function createRandomPassword() {
         $otp .= $chars[mt_rand(0, strlen($chars) - 1)];
     }
     return $otp;
+
+
+
     
+
   } 
