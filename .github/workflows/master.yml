@@ -15,8 +15,8 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ftp.crysta.online
-        username: crysta1@crysta.online
-        password: Q90OWER#123tET7
+        username: crystao1
+        password: Encapsulation419@
         remote-dir: "./public_html/"
         
      
