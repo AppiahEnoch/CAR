@@ -14,9 +14,9 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: ${{ secrets.SERVER_NAME}}
-        username: ${{ secrets.USERNAME}}
-        password: ${{ secrets.SERVER_PASSWORD}}
+        server: ftp.crysta.online
+        username: crysta1@crysta.online
+        password: Q90OWER#123tET7
         remote-dir: "./public_html/"
         
      
