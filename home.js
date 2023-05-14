@@ -93,7 +93,7 @@ function getData() {
 
     },
     error: function(xhr, status, error) {
-      alert("Error: " + error);
+     // alert("Error: " + error);
     }
   });
 }
@@ -230,7 +230,7 @@ function sendEmails(receiverEmail) {
     
         sendNextEmail();
 
-        alert(receiverEmail[i])
+       // alert(receiverEmail[i])
 
     
 
