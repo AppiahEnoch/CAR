@@ -14,9 +14,9 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: www.crysta.online
-        username: crysta1@crysta.online
-        password: Encapsulation419@
+        server: ftp.crysta.online
+        username: b@crysta.online
+        password: E]g@Fgw4nUUk
    
         
      
