@@ -22,7 +22,7 @@ $(document).ready(function () {
   });
 
 
-   // init()
+    init()
     //getData()
     //getManager()
    
@@ -104,8 +104,11 @@ function init() {
     type: "post",
     cache: false,
     url: "home_2.php",
-    dataType: "json",
+    dataType: "text",
     success: function (data, status) {
+
+     alert(data);
+     return 
       $("#gmanager").text(data[0]);
     },
     error: function (xhr, status, error) {
