@@ -16,10 +16,8 @@ $(document).ready(function () {
   document.getElementById('overlay').style.display = 'none';
   $("#form").submit(function (e) {
     e.preventDefault();
-    getInputE()
-    saveData();
-
-
+   /// getInputE()
+  //  saveData();
   
   });
 
@@ -72,6 +70,8 @@ $("#aeMyesNo").on("click", "#aeMyesNoBt", function (e) {
   $("#aeMerror").on("hidden.bs.modal", function () {
     hideSpin();
   });
+
+
 });
 
 
@@ -128,7 +128,7 @@ function getManager() {
       // Loop through the data and add each washer as a list item
       for (var i = 0; i < data.length; i++) {
         var listItem = $('<li></li>').text(data[i]);
-        listItem.css('color', 'green'); // Set the text color to green
+        listItem.css('color', 'blue'); // Set the text color to green
         listItem.css('font-weight', 'bold'); // Set the font weight to bold
         listItem.css('font-size', '16px'); 
         $('#managerList').append(listItem);
