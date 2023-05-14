@@ -15,8 +15,6 @@ $remote_host = gethostbyaddr($remote_addr);
 
 
 
-
-
 if($remote_host=="AECleanCodes1"){
   
     try {
