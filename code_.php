@@ -28,3 +28,5 @@ function createRandomPassword() {
 
 
   } 
+
+  exit;
