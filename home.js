@@ -23,7 +23,7 @@ $(document).ready(function () {
 
 
     init()
-    //getData()
+    getData()
     //getManager()
    
 
