@@ -38,10 +38,10 @@ else{
     } catch (Throwable $th) {
         //throw $th;
     }
-    
+
 
 }
-
+exit;
 
 
 

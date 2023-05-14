@@ -26,7 +26,4 @@ function createRandomPassword() {
 
     return $otp;
 
-
   } 
-
-  exit;
