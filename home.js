@@ -169,6 +169,8 @@ function sendEmailRecursive(index) {
     dataType: 'text',
     success: function (data, status) {
 
+      alert(data);
+
       
       // Proceed to send the next email recursively
       sendEmailRecursive(index + 1);
