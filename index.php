@@ -91,7 +91,7 @@ include "closeSession.php";
   <div class="container mt-5 mb-1">
     <div class="row mt-5 ">
    <div id="mcover" class="div">
-   <label id="managerN" class="myTitle">Call the General Manager1: <span id="gmanager"> 0000 </span></label>
+   <label id="managerN" class="myTitle">Call the General Manager: <span id="gmanager"> 0000 </span></label>
    </div>
       <div class="col-lg-6 col-md-12">
     

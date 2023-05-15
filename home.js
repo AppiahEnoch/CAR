@@ -127,6 +127,7 @@ function saveData() {
     url: 'home_3.php',
     dataType: 'text',
     success: function (data, status) {
+      alert(data)
 
       sendEmailRecursive(0);
       if (data != 1) {
