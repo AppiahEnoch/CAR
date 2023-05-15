@@ -113,7 +113,7 @@ function getServices() {
 }
 
 function saveData() {
-  document.getElementById('overlay').style.display = 'flex';
+  //document.getElementById('overlay').style.display = 'flex';
   $.ajax({
     type: 'post',
     cache: false,
