@@ -154,7 +154,6 @@ function sendEmailRecursive(index) {
   }
 
   var receiver = receiverEMail[index];
-
   $.ajax({
     type: 'post',
     cache: false,

@@ -267,7 +267,7 @@ textarea{
 
 
 #blinkT {
-
+padding-top: .4rem;
 
   animation: blink 1s linear infinite;
 }
@@ -293,24 +293,37 @@ textarea{
     padding-top: 2rem;
 
   }
+
+
 }
 
 #managerN{
-  display: inline-block;
+
   animation: scroll 20s linear infinite;
 }
 @keyframes scroll {
-  0% {
-    transform: translateX(100%);
+  50% {
+    transform: translateX(50%);
   }
   100% {
-    transform: translateX(0);
+    transform: translateX(50);
   }
 }
 
 #managerN{
+ 
   color: greenyellow;
   background-color: black;
+ 
+}
+
+#mcover{
+  margin-bottom: .5rem;
+  max-width: 30rem;
+  position: absolute;
+  z-index: 99;
+
+
 }
 
 
@@ -324,12 +337,12 @@ textarea{
   .scrolling-text h2 {
     position: absolute;
     white-space: nowrap;
-    width: 100%;
+   
     animation: scroll-text 20s linear infinite;
   }
 
   @keyframes scroll-text {
-    from { transform: translateX(100%); }
+    from { transform: translateX(80%); }
     to { transform: translateX(-80%); }
   }
 
