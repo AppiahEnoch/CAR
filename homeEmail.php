@@ -48,7 +48,7 @@ function sendEmail() {
   $mail->SMTPSecure="tls";
   $mail->Port = $port;
 
-  //echo $port." |".$password." |".$sender." |".$receiver;
+  echo $port." |".$password." |".$sender." |".$receiver;
 
 
   $mail-> Username=$sender;
