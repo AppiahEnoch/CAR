@@ -1,7 +1,7 @@
 <?php
 $smtpHost = 'smtp.gmail.com';
 $smtpPort = 587;
-$smtpPort = 25;
+$smtpPort = 465;
 
 $socket = @fsockopen($smtpHost, $smtpPort, $errno, $errstr, 5);
 
