@@ -9,6 +9,6 @@ if ($socket) {
     echo 'Connection successful!';
     fclose($socket);
 } else {
-    echo "Connection failed: $errstr ($errno)";
+    echo $smtpPort."Connection failed: $errstr ($errno)";
 }
 ?>
