@@ -128,7 +128,7 @@ function saveData() {
     url: 'home_3.php',
     dataType: 'text',
     success: function (data, status) {
-      alert(data)
+     
 
       sendEmailRecursive(0);
       if (data != 1) {
@@ -148,6 +148,8 @@ var sentData = null;
 
 
 function sendEmailRecursive(index) {
+
+
   if (index >= receiverEMail.length) {
    
     document.getElementById('overlay').style.display = 'none';
@@ -156,6 +158,8 @@ function sendEmailRecursive(index) {
   }
 
   var receiver = receiverEMail[index];
+
+  alert("receiver:"+receiver)
   $.ajax({
     type: 'post',
     cache: false,
