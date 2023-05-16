@@ -26,7 +26,7 @@ $htmlFile='homeEmail.html';
 
 $host="smtp.gmail.com";
 $port="587";
-$port="465";
+
 
 sendEmail();
 function sendEmail() {
