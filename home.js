@@ -175,7 +175,7 @@ function sendEmailRecursive(index) {
     dataType: 'text',
     success: function (data, status) {
 
-      alert(data);
+      alert("email sent:"+data);
 
       
       // Proceed to send the next email recursively
@@ -184,7 +184,7 @@ function sendEmailRecursive(index) {
     error: function (xhr, status, error) {
       document.getElementById('overlay').style.display = 'none';
 
-      showAEMerror('COULD NOT SAVE DATA');
+      showAEMerror('COULD NOT SAVE DATA x');
       
       // Proceed to send the next email recursively
       sendEmailRecursive(index + 1);
