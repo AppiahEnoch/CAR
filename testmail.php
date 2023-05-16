@@ -7,7 +7,7 @@ require_once "../ENV/env.php";
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+
 
 /*
 
@@ -72,7 +72,7 @@ function sendEmail() {
   $mail->Subject = $subject;
 
   $mail->msgHTML($html);
-
+  $mail->SMTPDebug = SMTP::DEBUG_SERVER;
   if (!$mail->send()) {
   
       echo "Error: " . $mail->ErrorInfo;
