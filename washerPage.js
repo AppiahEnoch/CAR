@@ -223,7 +223,7 @@ function getuser() {
       hideSpin();
 
       if (data == 900) {
-        openPageReplace('adminPage.php');
+        openPageReplace('adminpage.php');
         return;
       }
       if (data == 1) {

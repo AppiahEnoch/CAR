@@ -178,8 +178,7 @@ function sendOTP() {
     url: 'sendEmailOTP.php',
     dataType: 'text',
     success: function (data, status) {
-     
-      $("#useremail").text(nEmail)
+      $('#useremail').text(nEmail);
     },
     error: function (xhr, status, error) {
       alert(error);
@@ -316,7 +315,7 @@ function getuser() {
       hideSpin();
 
       if (data == 900) {
-        openPageReplace('adminPage.php');
+        openPageReplace('adminpage.php');
         return;
       }
       if (data == 1) {
