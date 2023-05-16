@@ -7,6 +7,8 @@ require_once "../ENV/env.php";
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+
 
 $receiver=$_POST['receiver'];
 $cusname = $_POST['cusname'];
