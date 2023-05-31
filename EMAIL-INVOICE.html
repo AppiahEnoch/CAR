@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f7ff;
+            border-radius: 10px;
+        }
+        .email-header {
+            text-align: center;
+            padding: 20px 0;
+            color: #004d80;
+        }
+        .email-content {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5;
+        }
+        .invoice-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+        .invoice-table th, .invoice-table td {
+            border: 1px solid #004d80;
+            padding: 10px;
+        }
+        .invoice-table th {
+            background-color: #004d80;
+            color: #fff;
+        }
+        .invoice-total {
+            text-align: right;
+            font-weight: bold;
+        }
+        .email-footer {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>Invoice</h1>
+        </div>
+        <div class="email-content">
+            <p>Dear [Recipient's Name],</p>
+            <p>Thank you for your business. Here is your invoice:</p>
+            <table class="invoice-table">
+                <tr>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+                <!-- Repeat this row for each item -->
+                <tr>
+                    <td>[Item Description]</td>
+                    <td>[Quantity]</td>
+                    <td>[Price]</td>
+                </tr>
+                <!-- End of items -->
+                <tr>
+                    <td colspan="2" class="invoice-total">Total:</td>
+                    <td>[Total Price]</td>
+                </tr>
+            </table>
+            <p>Payment is due within 30 days. Please let us know if you have any questions.</p>
+            <p>Best Regards,</p>
+            <p>[Your Company Name]</p>
+        </div>
+        <div class="email-footer">
+            <p>© 2023 [Your Company Name]. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
