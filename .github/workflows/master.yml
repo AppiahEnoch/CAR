@@ -12,6 +12,6 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ftp.crysta.online
-        username: crystal
-        password: Crystalclear@gh1
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
    

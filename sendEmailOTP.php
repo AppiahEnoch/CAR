@@ -37,8 +37,10 @@ function sendEmail() {
   $html = file_get_contents($htmlFile);
 
 
+  $currentYear = date('Y');
   // modify file
   $html = str_replace('{{code}}', $code, $html);
+  $html = str_replace('{{curyear}}',   $currentYear, $html);
 
 
 

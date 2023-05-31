@@ -9,7 +9,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 
-/*
+
 
 $receiver=$_POST['receiver'];
 $cusname = $_POST['cusname'];
@@ -18,15 +18,9 @@ $cusmobile = $_POST['cusmobile'];
 $cusDesc = $_POST['cusDesc'];
 $cusservice = $_POST['cusservice'];
 
-*/
 
 
-$receiver="prignutt@gmail.com";
-$cusname = "Test";
-$cusloc = "test";
-$cusmobile ="Test";
-$cusDesc = "Test";
-$cusservice = "Test";
+
 
 $sender=$email_sender;
 $password=$email_password;
@@ -41,7 +35,7 @@ $port="587";
 
 sendEmail();
 function sendEmail() {
-  
+  $currentYear = date('Y');
   global $sender,$receiver,$password,$port,
   $host,$subject,$htmlFile,$cusname,$cusloc,$cusmobile,$cusDesc,$cusservice;
   $mail = new PHPMailer;
@@ -53,6 +47,10 @@ function sendEmail() {
   $html = str_replace('{{cusmobile}}', $cusmobile, $html);
   $html = str_replace('{{cusDesc}}', $cusDesc, $html);
   $html = str_replace('{{cusservice}}', $cusservice, $html);
+  $html = str_replace('{{curyear}}',$currentYear , $html);
+  
+  // extract current year
+
 
 
 
