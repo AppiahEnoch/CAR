@@ -18,13 +18,8 @@ $cusmobile = $_POST['cusmobile'];
 $cusDesc = $_POST['cusDesc'];
 $cusservice = $_POST['cusservice'];
 
-
-
-
-
 $sender=$email_sender;
 $password=$email_password;
-
 
 $subject='SERVICE REQUEST';
 $htmlFile='homeEmail.html';

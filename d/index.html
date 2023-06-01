@@ -1,6 +1,3 @@
-<?php
-include "closeSession.php";
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,7 +19,6 @@ include "closeSession.php";
     <link rel="stylesheet" href="index-xm.css" />
     <link rel="stylesheet" href="index-sm.css" />
     <link rel="stylesheet" href="index-lg.css" />
-    <link rel="stylesheet" href="index2.css" />
 
     <link
       rel="icon"
@@ -144,9 +140,10 @@ include "closeSession.php";
                 <div class="dropdown">
                   <a
                     class="btn btn-secondary"
-                    href="service.html"
+                    href="#"
                     role="button"
-                 
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
                   >
                   <i class="fa fa-car" aria-hidden="true"></i>
                     Get Service
@@ -159,7 +156,7 @@ include "closeSession.php";
                   <a
                   
                     class="btn btn-secondary"
-                    href="login.php"
+                    href="public_html/login/login.html"
                     role="button"
                   
                   >
@@ -377,45 +374,6 @@ CAROUSEL ELEMENT BELOW THIS LINE
     </div>
 
 
-    <div id="serviceWrapper" class="container-fluid mb-3">
-      <div class="row text-center">
-        <h1 id="ourservice" style="color:rgb(231, 240, 231); background-color:green">
-          <span class="w-100" id="mservive">Our Services</span> </h1>
-     
-      </div>
-      <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <h1 class="card-title">Service 1</h1>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <h1 class="card-title">Service 2</h1>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <h1 class="card-title">Service 3</h1>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-    
-
-    </div>
 
 
 
@@ -448,7 +406,6 @@ CAROUSEL ELEMENT BELOW THIS LINE
       crossorigin="anonymous"
     ></script>
 
-
-    <script src="fillserviceCards.js"></script>
+    <script src="homepageFiles/animation.js"></script>
   </body>
 </html>

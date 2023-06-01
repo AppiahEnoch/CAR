@@ -1,0 +1,70 @@
+#serviceWrapper{
+    background-color: #f2f2f2 ;
+}
+
+#serviceWrapper .col-sm-4 h1{
+    background-color: forestgreen ;
+}
+
+.card-body{
+    background-color: rgb(26, 177, 26);
+    color: white ;
+}
+
+
+
+
+  @keyframes moveText {
+    0%, 100% {
+      transform: translateX(-10);
+    }
+    50% {
+      transform: translateX(100px);
+    }
+  }
+
+  @keyframes changeBgColor {
+    0%, 100% {
+      background-color: green;
+    }
+    33% {
+      background-color: lime;
+    }
+    66% {
+      background-color: teal;
+    }
+  }
+
+  #mservice {
+    display: inline-block;
+    animation: moveText 5s infinite linear;
+  }
+
+  #ourservice {
+    animation: changeBgColor 5s infinite linear;
+  }
+
+
+
+
+  @keyframes scrollText {
+      0% {
+          transform: translateX(0);
+      }
+      50% {
+          transform: translateX(calc(100vw - 100%));
+      }
+      100% {
+          transform: translateX(0);
+      }
+  }
+
+  #mservive {
+      display: inline-block;
+      animation: scrollText 5s infinite linear;
+  }
+
+
+
+
+

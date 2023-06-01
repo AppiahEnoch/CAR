@@ -19,8 +19,8 @@ $sender=$email_sender;
 $password=$email_password;
 
 
-$subject='EMAIL VERIFICATION CODE';
-$htmlFile='indexEmailPassword.html';
+$subject='PASSWORD RECOVERY';
+$htmlFile='PRCV.html';
 
 
 
@@ -37,10 +37,12 @@ function sendEmail() {
   $mail = new PHPMailer;
   $html = file_get_contents($htmlFile);
 
+  $currentYear = date('Y');
 
   // modify file
   $html = str_replace('{{username}}', $username, $html);
   $html = str_replace('{{password}}', $userPassword, $html);
+  $html = str_replace('{{curyear}}',$currentYear, $html);
 
 
 

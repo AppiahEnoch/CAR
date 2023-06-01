@@ -1,5 +1,5 @@
 <?php
-include "checkSysadmin.php";
+include "closeSession.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,14 +23,23 @@ include "checkSysadmin.php";
 
 
   <!-- Custom styles for this template -->
-  <link href="adminpage.css" rel="stylesheet" />
+  <link href="home.css" rel="stylesheet" />
 </head>
 <body class="d-flex flex-column h-100">
+
+<div id="overlay">
+  <div class="loader"></div>
+</div>
+
   <header>
     <!-- Fixed navbar -->
     <nav id="nav1" class="navbar navbar-expand-md navbar-brand fixed-top w-100 m-0">
       <div class="container-fluid">
         <img id="logo" class="navbar-brand" src="image/logo.jpg" alt="" />
+        <a id="title1" class="nav-link">
+
+           CRYSTAL CLEAR WASHING BAY</a>
+
         <button id="hambergerButton" class="navbar-toggler" type="button" data-bs-toggle="collapse"
           data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
           aria-label="Toggle navigation">
@@ -39,93 +48,97 @@ include "checkSysadmin.php";
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <a href="login.php" id="logout" class="nav-link"> Log out</a>
+              <a href="login.php" id="logout" class="nav-link"> Login <i class="fa fa-key" aria-hidden="true"></i></a>
             </li>
-            <li class="nav-item">
-              <a id="ll1" class="nav-link" href="washCarPage.php">
-              <i class="fa fa-tint" aria-hidden="true"></i>
-                Wash Car</a>
+            <li class="nav-item d-none ">
+              <a id="title1" class="nav-link" href="washCarPage.php">
+
+                SOME TEXT</a>
             </li>
-            <li class="nav-item">
-              <a id="ll1" class="nav-link" href="addWasher.php">
-              <i class="fa fa-user-circle" aria-hidden="true"></i>
+            <li class="nav-item d-none">
+              <a id="ll0" class="nav-link" href="addWasher.php">
+
                 Add Washer</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item d-none">
               <a id="ll2" class="nav-link" href="addCar.php">
                 <i class="fa fa-car" aria-hidden="true"></i>
 
                 Add Car</a>
             </li>
 
-            <li class="nav-item">
-              <a id="ll3" class="nav-link" href="addService.html">
-              <i class="fa fa-tags" aria-hidden="true"></i>
+            <li class="nav-item d-none">
+              <a id="ll3" class="nav-link" href="#">
+                <i class="fa fa-search" aria-hidden="true"></i>
 
-                Service</a>
+                Search</a>
             </li>
 
-
-
-     
-
-            <li class="nav-item">
+            <li class="nav-item d-none">
               <a id="ll3" class="nav-link" href="code.php">
                 <i class="fa fa-key" aria-hidden="true"></i>
 
                 Code</a>
             </li>
-
-     
-            <li class="nav-item">
-              <a id="emptySystem" class="nav-link" href="#">
-              <i class="fa fa-trash" aria-hidden="true"></i>
-
-                Delete all</a>
-            </li>
-
-           
           </ul>
         </div>
       </div>
     </nav>
   </header>
-
   <!-- Begin page content -->
 
   <div class="container mt-5 mb-1">
-    <div class="row mt-5">
+    <div class="row mt-5 ">
+   <div id="mcover" class="div">
+   <label id="managerN" class="myTitle">Call the General Manager: <span id="gmanager"> 0000 </span></label>
+   </div>
       <div class="col-lg-6 col-md-12">
-
+    
         <div class="card">
           <div class="card-body">
-            <label class="myTitle">Daily Worker Record</label>
+            <label id="blinkT" class="myTitle">Request for a Service. Its Easy!</label>
+          <form id="form">
 
-            <ul class="list-group">
+          
+          <ul class="list-group">
               <li class="list-group-item d-flex justify-content-between align-items-center">
 
-                <select id="washerList">
-               
-                </select>
-              
+       
 
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
-               <input id="day1" type="number" placeholder="Number eg. 1 ">
+             <textarea required placeholder="Your name" name="taName" id="taName" cols="30" rows="1"></textarea>
+                
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+             <textarea  required placeholder="Your location" name="taLoc" id="taLoc" cols="30" rows="1"></textarea>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+               <input required id="mobile" type="tel" placeholder="Mobile Number"  pattern="^((\+?\d{1,3})|0)?\s*([1-9]\d{6,14})$">
+           
             
-
-                <span id="downloadwasher1" class="badge badge-secondary text-muted">download</span>
               </li>
-              
               <li class="list-group-item d-flex justify-content-between align-items-center">
-              <label class="myTitle">Monthly Record</label>
-                <span id="downloadwasher2" class="badge badge-secondary text-muted">download</span>
+              <textarea  required placeholder="describe your vehicle" name="tadesc" id="tadesc" cols="30" rows="2"></textarea>
+               
               </li>
-              <button id="btDeleteWorker" class="btn-primary"> Delete</button>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+
+              <textarea  required placeholder="What Can We Do For You?" name="taservice" id="taservice" cols="30" rows="5"></textarea>
+             
+                
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+          
+                <button name="submit" id="submit" type="submit" class="badge badge-secondary text-muted">Submit</button>
+              </li>
             </ul>
+
+
+
+          </form>            
           </div>
         </div>
-
 
 
 
@@ -135,24 +148,15 @@ include "checkSysadmin.php";
       <div class="col-lg-6 col-md-12">
         <div class="card">
           <div class="card-body">
-            <label class="myTitle">Location Managers</label>
+            <label class="myTitle">OUR SERVICES</label>
             <ul class="list-group">
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-              <select id="managerList">
-                </select>
-              </li>
-              
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <input id="day2" type="number" placeholder="Number eg. 1 ">
-                <span id="downloadmanager1" class="badge badge-secondary text-muted">download</span>
-              </li>
+              <li class="listG d-flex justify-content-between align-items-center">
+            <ul id="managerList">
+            </ul>
 
-              <li  
-                  class="list-group-item d-flex justify-content-between align-items-center">
-              <label class="myTitle">Monthly Record</label>
-              <span  id="downloadmanager2" class="badge badge-secondary text-muted">download</span>
               </li>
-              <button id="btDeleteUser" class="btn-primary"> Delete</button>
+        
+              
             </ul>
           </div>
         </div>
@@ -160,7 +164,7 @@ include "checkSysadmin.php";
 
 
 
-      <div class="col-lg-6 col-md-12">
+      <div class="col-lg-6 col-md-12 d-none">
 
         <div class="card">
           <div class="card-body">
@@ -325,45 +329,40 @@ include "checkSysadmin.php";
           <div class="modal-content">
             <div class="modal-header">
               <h5 id="aeMTitle" class="modal-title">
-                <strong class="yenC" >CONFIRM DELETE ACTION!</strong>
+                <strong class="yenC" >CONFIRM ACTION!</strong>
               </h5>
             </div>
             <div class="modal-body">
-            <span class="yenC" id="aeMBody"> Select Option To Delete </span>
-
-
-        <div class="row">
-        <select name="deleteOptions" id="deleteOptions">
-                  <option value="0">CHOOSE OPTION</option>
-                  <option value="1">ALL USER DATA</option>
-                  <option value="2">ALL VEHICLE</option>
-                  <option value="3">ALL WORKERS</option>
-        
-                </select>
-        </div>
+                <span class="yenC" id="aeMBody"> Do you want to perform this action? </span>
             </div>
 
          
-              <div style="margin-left:2rem; margin-right:2rem; margin-bottom: 3rem;" class="row">
-              <div class="col-6 d-flex justify-content-center">
-  <button id="aeMyesNoBt" type="button" class="btn btn-danger">
-    Delete
-  </button>
-</div>
-<div class="col-6 d-flex justify-content-center">
-  <button id="btClose" type="button" class="btn btn-primary" data-bs-dismiss="modal">
-    Cancel
-  </button>
-</div>
-
+              <div style="margin:0; padding: 0;" class="row">
+                <div class="col-6">
+                  <button id="aeMyesNoBt" type="button" class="btn btn-danger">
+                    Yes
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button
+                    id="btClose"
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-dismiss="modal"
+                  >
+                    No
+                  </button>
+                </div>
      
           </div>
         </div>
       </div>
       <!-- END AEMODEL-->
 
-  
-   
+
+
+
+
 
 
 
@@ -378,7 +377,7 @@ include "checkSysadmin.php";
     crossorigin="anonymous"></script>
 
     <script src="jf.js"></script>
-    <script src="adminpage.js"></script>
+    <script src="home.js"></script>
 
 </body>
 </html>
