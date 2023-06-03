@@ -1,5 +1,5 @@
 html{
-  background-color: #735800;
+  background-color:forestgreen;
 }
 body {
     overflow-x: hidden;
@@ -152,7 +152,8 @@ background-color: white;
   top: 0;
   background-color: #f9f9f9;
   width: 100%;
-  z-index: 999; 
+  z-index: 999;
+  
   
   }
 
@@ -163,12 +164,12 @@ background-color: white;
 
 
   #footer-copyright{
-    background-color: #735800; 
+    background-color: forestgreen; 
     color: #f2f2f2;
   }
 
   #myFooter{
-    background-color: #735800; 
+    background-color: forestgreen; 
   }
 
 

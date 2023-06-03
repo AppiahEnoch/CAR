@@ -168,6 +168,20 @@ include "closeSession.php";
                   </a>
                 </div>
               </li>
+              <li class="nav-item">
+                <div class="dropdown">
+                  <a
+                  
+                    class="btn btn-secondary"
+                    href="reset.html"
+                    role="button"
+                  
+                  >
+                  Reset
+                <i class="fa fa-unlock" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </li>
 
               <li class="nav-item d-none">
                 <div class="dropdown">
