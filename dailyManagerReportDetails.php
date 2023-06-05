@@ -74,7 +74,7 @@ while ($row = $result->fetch_assoc()) {
     $w=$row['workDay'];
     if ($w!= $workDay2) {
         $workDay2=$w;
-
+        $current_location = $row['location'];
         // Start a new table for each location
         if ($current_location !== null) { 
             $valid=true;
