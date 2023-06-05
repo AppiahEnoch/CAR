@@ -6,7 +6,7 @@ deleteFile('report/workerDailyReport.pdf');
 
 $workerName=$_POST["workerName"];
 $workerDays=$_POST["workerDays"];
-
+$total_difference = 0;
 
 // Retrieve data from the 'washed' table
 $sql = "SELECT 
@@ -46,11 +46,14 @@ $total_amount = 0;
 
 $valid=false;
 
+
 while ($row = $result->fetch_assoc()) {
     $w=$row['workDay'];
+
     if ($w!= $workDay2) {
         $workDay2=$w;
 
+        $current_location = $row['location'];
         // Start a new table for each location
         if ($current_location !== null) { 
             $valid=true;
@@ -90,8 +93,10 @@ while ($row = $result->fetch_assoc()) {
         $total_washer_amount = 0;
         $total_amount = 0;
         $total_difference = 0;
+  
     }
-
+    $current_location = $row['location'];
+  
     $pdf->SetFont('Arial', '', 12);
     
  
@@ -116,8 +121,9 @@ while ($row = $result->fetch_assoc()) {
 
 
 if (!$valid){
-    echo 0;
-   exit;
+ echo 0;
+ exit; 
+
 }
 
 // Add a summary row for the last location
