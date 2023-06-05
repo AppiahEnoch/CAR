@@ -8,6 +8,7 @@ $nEmail=$_POST["nEmail"];
 $nMobile=$_POST["nMobile"];
 $nUsername=$_POST["nUsername"];
 $nPassword=$_POST["nPassword"];
+$nLocation=$_POST["nLocation"];
 
 
 $sql = "SELECT * FROM user1 WHERE username=?";
@@ -39,8 +40,8 @@ else{
 
 
 
-$stmt = $conn->prepare("INSERT INTO user1 (fullname, email,mobile, username,password1) VALUES (?, ?, ?,?,?)");
-$stmt->bind_param("sssss", $nFullname, $nEmail, $nMobile,$nUsername,$nPassword);
+$stmt = $conn->prepare("INSERT INTO user1 (fullname, email,mobile, username,password1,location) VALUES (?, ?, ?,?,?,?)");
+$stmt->bind_param("ssssss", $nFullname, $nEmail, $nMobile,$nUsername,$nPassword,$nLocation);
  $stmt->execute();
 
  echo 1;

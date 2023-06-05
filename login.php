@@ -122,6 +122,12 @@ include "closeSession.php"
             <input
               required
               type="text"
+              id="nLocation"
+              placeholder="Enter Location"
+            />
+            <input
+              required
+              type="text"
               id="nUsername"
               placeholder="Enter Username"
             />

@@ -10,6 +10,7 @@ var nMobile = null;
 var nUsername = null;
 var nPassword = null;
 var nConfirm = null;
+var nLocation=null;
 
 var localEmailCode = '1';
 var userEmailCode = '0';
@@ -223,6 +224,7 @@ function saveNewUser() {
       nMobile: nMobile,
       nUsername: nUsername,
       nPassword: nPassword,
+      nLocation: nLocation,
     },
     cache: false,
     url: 'indexC3.php',
@@ -354,6 +356,7 @@ function getInput() {
   nUsername = $('#nUsername').val();
   nPassword = $('#nPassword').val();
   nConfirm = $('#nConfirm').val();
+  nLocation=$('#nLocation').val();
 
   nRegCode = trimV(nRegCode);
   nFullname = trimV(nFullname);
