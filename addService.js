@@ -20,6 +20,7 @@ document.getElementById('form1').addEventListener('submit', function (event) {
       service_description: serviceDescription,
     },
     success: function (response) {
+      alert(response)
       showToastC('aeToastC', 'Success!', 'Service added successfully', '10');
     },
     error: function (jqXHR, textStatus, errorThrown) {
