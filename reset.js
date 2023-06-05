@@ -48,6 +48,7 @@ function reset(oldUsername, oldPassword, newUsername,newPassword,newEmail,newMob
       url: "reset.php",
       dataType: "text",
       success: function (data, status) {
+        alert(data)
         if(data==1){
             showToast( "aeToastS","Success","Your password has been reset","10"); 
         }
