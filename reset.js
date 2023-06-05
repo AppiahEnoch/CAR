@@ -12,6 +12,7 @@ $(document).ready(function () {
         var newUsername = $('#new_username').val();
         var newPassword = $('#new_password').val();
         var newEmail = $('#new_email').val();
+        var newMobile = $('#new_mobile').val();
         var confirmNewPassword = $('#confirm_new_password').val();
 
         if (newPassword !== confirmNewPassword) {
@@ -24,7 +25,7 @@ $(document).ready(function () {
 
             
         
-        reset(oldUsername, oldPassword, newUsername, newPassword,newEmail);
+        reset(oldUsername, oldPassword, newUsername, newPassword,newEmail,newMobile);
     
     });
 });
@@ -32,7 +33,7 @@ $(document).ready(function () {
 
 
 
-function reset(oldUsername, oldPassword, newUsername,newPassword,newEmail) {
+function reset(oldUsername, oldPassword, newUsername,newPassword,newEmail,newMobile) {
     $.ajax({
       type: "post",
       data: {
@@ -41,6 +42,7 @@ function reset(oldUsername, oldPassword, newUsername,newPassword,newEmail) {
         newUsername: newUsername,
         newPassword: newPassword,
         newEmail:newEmail,
+        newMobile:newMobile,
       },
       cache: false,
       url: "reset.php",

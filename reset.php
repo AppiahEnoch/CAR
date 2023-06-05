@@ -6,6 +6,7 @@ $oldPassword = $_POST['oldPassword'];
 $newUsername = $_POST['newUsername'];
 $newPassword = $_POST['newPassword'];
 $newEmail = $_POST['newEmail'];
+$newMobile = $_POST['newMobile'];
 
 
 // Perform validation if needed
@@ -14,18 +15,18 @@ $newEmail = $_POST['newEmail'];
 // Carry out the reset operation
 
 // Check the sysadmin table
-$sql = "UPDATE sysadmin SET username = ?, password1 = ?, email = ? WHERE username = ? AND password1 = ?";
+$sql = "UPDATE sysadmin SET username = ?, password1 = ?, email = ?,mobile=? WHERE username = ? AND password1 = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sssss", $newUsername, $newPassword, $newEmail, $oldUsername, $oldPassword);
+$stmt->bind_param("ssssss", $newUsername, $newPassword, $newEmail,$newMobile, $oldUsername, $oldPassword);
 
 if ($stmt->execute() && $stmt->affected_rows > 0) {
   // Reset operation successful
   echo 1;
 } else {
   // Check the user1 table
-  $sql = "UPDATE user1 SET username = ?, password1 = ?, email = ? WHERE username = ? AND password1 = ?";
+  $sql = "UPDATE user1 SET username = ?, password1 = ?, email = ?,mobile=? WHERE username = ? AND password1 = ?";
   $stmt = $conn->prepare($sql);
-  $stmt->bind_param("sssss", $newUsername, $newPassword, $newEmail, $oldUsername, $oldPassword);
+  $stmt->bind_param("ssssss", $newUsername, $newPassword, $newEmail,$newMobile, $oldUsername, $oldPassword);
 
   if ($stmt->execute() && $stmt->affected_rows > 0) {
     // Reset operation successful
