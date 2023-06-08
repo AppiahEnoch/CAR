@@ -81,7 +81,7 @@ include "checkSysadmin.php";
               <a id="emptySystem" class="nav-link" href="#">
               <i class="fa fa-trash" aria-hidden="true"></i>
 
-                Delete all2</a>
+                Delete all</a>
             </li>
 
             

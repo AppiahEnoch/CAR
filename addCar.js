@@ -70,7 +70,7 @@ function setcarname() {
     url: 'addCar2_.php',
     dataType: 'text',
     success: function (data, status) {
-      alert(data);
+     // alert(data);
       var output = data.split('|');
       $('#carname').val(output[0]);
 
