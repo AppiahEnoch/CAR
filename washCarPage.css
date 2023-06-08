@@ -42,12 +42,12 @@ img {
   bottom: 0;
   margin: auto;
   width: 260px;
-  height: 28rem;
+  height: 35rem;
   border-radius: 5px;
   border-width: 1rem;
   background: rgba(3, 3, 3, 0.25);
   box-shadow: 1px 3px 50px #000;
-  
+
 }
 
 #container2 {
@@ -116,6 +116,7 @@ img {
   overflow-y: auto;
   display: none;
 }
+
 #container4 {
   position: absolute;
   top: 0;
@@ -135,6 +136,16 @@ img {
   overflow-y: auto;
   display: none;
 }
+
+#btcontainer4Submit{
+  position: fixed;
+  bottom: 2rem;
+  width: 15%;
+  right: 40%;
+  background-color: green;
+}
+
+
 
 #emailM1 {
   color: #ddd;
@@ -511,6 +522,30 @@ img {
   color: red;
   cursor: grab;
   
+}
+
+#myrowD{
+  justify-content: center;
+  text-align: center;
+  background-color: transparent;
+  font-weight: bold;
+  border-style: solid;
+  border-color: gray;
+  border-width: .2rem;
+
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.lbD{
+  color: white;
+}
+
+#lbCountD{
+  border-radius: 50%;
+  background-color: green;
+  color: white;
+
 }
 
 

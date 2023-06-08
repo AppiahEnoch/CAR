@@ -1,3 +1,6 @@
+<?php
+include "checkUser.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,6 +36,7 @@
 
         <title>Crystal Clear Washing Bay</title>
         <link rel="stylesheet" href="./washCarPage.css" />
+        <link rel="stylesheet" href="./washCarPageXS.css" />
       </head>
       <body>
         <div id="container1">
@@ -46,7 +50,15 @@
             <button type="submit" id="btWasher">Washer</button>
 
             <button type="submit" id="btService">Services</button>
-            <button type="submit" id="btPrint">Print</button>
+            <button type="submit" id="btPrint">Print
+              <i id="spin1" class="fas fa-spinner fa-spin d-none"></i>
+            </button>
+
+       <div id="myrowD" class="row">
+        <label class="lbD" id="lbWasherD">#######</label>
+        <label class="lbD"  id="lbCarD">#######</label>
+        <label class="lbD"  id="lbCountD"> 0</label>
+       </div>
             <textarea
               name="taReport"
               id="taReport"
@@ -93,8 +105,12 @@
          
          
           <div class="grid-container4">
+
+          
           </div>
-        </div>
+          <div class="myrow">
+            <button  id="btcontainer4Submit"> Done </button>
+          </div>
       </body>
 
       <!-- BEGIN  MODALS-->

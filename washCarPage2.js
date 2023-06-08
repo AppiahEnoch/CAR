@@ -118,14 +118,15 @@ gridW.addEventListener('click', function(event) {
 
   var labelWasher = clickedCell.querySelector('label');
   var labelText = labelWasher.textContent;
-
+  var lbWasherD= document.getElementById('lbWasherD');
+lbWasherD.textContent = labelText;
 
   var textarea = document.getElementById("taReport");
  
   var newText = labelText;
   wfullname=newText
-  var updatedText =   chosenCar+ "\n" + newText;
-  textarea.value = updatedText;
+
+ 
 
   amount1=null;
 

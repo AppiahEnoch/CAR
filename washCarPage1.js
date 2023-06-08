@@ -4,6 +4,8 @@ var carname1 = null;
 var action1 = null;
 var washer1 = null;
 
+
+
 $('#tfSearch').keyup(function () {
   var gridC = document.querySelector('.grid-container');
   gridC.innerHTML = '';
@@ -116,10 +118,14 @@ gridC.addEventListener('click', function (event) {
   var label = clickedCell.querySelector('label');
   var labelText = label.textContent;
 
-  var textarea = document.getElementById('taReport');
-  textarea.value = '';
-  textarea.value = labelText;
 
+  var textarea = document.getElementById('taReport');
+  var lbCarD= document.getElementById('lbCarD');
+ lbCarD.textContent = labelText;
+  
+  
+
+  
   const con1 = (document.getElementById('container1').style.display = 'block');
   const con2 = (document.getElementById('container2').style.display = 'none');
 });

@@ -314,6 +314,8 @@ function getuser() {
     url: 'index__.php',
     dataType: 'text',
     success: function (data, status) {
+
+  
       hideSpin();
 
       if (data == 900) {

@@ -1,6 +1,8 @@
 var username = null;
 var password = null;
 var emailresend = null;
+var globalArray = [];
+var data2=null
 
 // new user
 var nRegCode = null;
@@ -16,6 +18,7 @@ var localEmailCode = '1';
 var userEmailCode = '0';
 
 $(document).ready(function () {
+  emptyTempWashed();
   $('#aeMsuccessw').on('hidden.bs.modal', function () {
     openPageReplace('login.php');
   });
@@ -55,7 +58,9 @@ $(document).ready(function () {
   });
 
   $('#btPrint').click(function () {
-    insertTransaction();
+    showSpin(1)
+    
+    processSelectedItems(globalArray, data2);
   });
 });
 function myAjax1() {
@@ -75,6 +80,26 @@ function myAjax1() {
     },
   });
 }
+
+function emptyTempWashed() {
+  $.ajax({
+    type: 'post',
+
+    cache: false,
+    url: 'deleteTempWashed.php',
+    dataType: 'text',
+    success: function (data, status) {
+ 
+    },
+    error: function (xhr, status, error) {
+      // alert(error);
+    },
+  });
+}
+
+
+
+
 function sendOTP() {
   $.ajax({
     type: 'post',
@@ -328,12 +353,31 @@ function hideErrorText() {
   $('#error_message').hide();
 }
 
-function showSpin() {
-  document.getElementById('spin').style.visibility = 'visible';
+
+function showSpin(number) {
+  var spinnerID = "#spin" + number;
+
+  if ($(spinnerID).hasClass("d-none")) {
+    $(spinnerID).removeClass("d-none");
+  }
+  $(spinnerID).show();
 }
-function hideSpin() {
-  document.getElementById('spin').style.visibility = 'hidden';
+
+function hideSpin(number) {
+  var spinnerID = "#spin" + number;
+  if (!$(spinnerID).hasClass("d-none")) {
+    $(spinnerID).addClass("d-none");
+  }
+  $(spinnerID).hide();
 }
+
+function hideAllSpin() {
+  for (var i = 1; i <= 10; i++) {
+    hideSpin(i);
+  }
+}
+
+
 
 function openPage_blank(url) {
   window.open(url, '_blank');

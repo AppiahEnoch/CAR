@@ -36,8 +36,7 @@ function cleanInput($data){
 }
 
 
-$stmt = $conn->prepare("SELECT * FROM sysadmin
-");
+$stmt = $conn->prepare("SELECT * FROM sysadmin");
 $stmt->execute();
 
 $result = $stmt->get_result();
@@ -45,9 +44,11 @@ $result = $stmt->get_result();
 if ($row = $result->fetch_assoc()) {
   $ad= $row['username'];
   $adm= $row['mobile'];
-
   $_SESSION["ceo"]=$ad;
   $_SESSION["ceoM"]=$adm;
+
+
+  
 
 }
 
