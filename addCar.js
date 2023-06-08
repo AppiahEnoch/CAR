@@ -11,6 +11,11 @@ $(document).ready(function () {
     openPageReplace('adminpage.php');
   });
 
+  $('#lbEditCar').click(function () {
+    openPageReplace('editCarHTML.php');
+  });
+
+
   $('#carImage').click(function () {
     $('#carImageF').click();
   });

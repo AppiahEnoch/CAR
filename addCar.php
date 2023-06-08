@@ -1,6 +1,4 @@
-<?php
-include "checkSysadmin.php";
-?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -56,6 +54,12 @@ include "checkSysadmin.php";
             <button type="submit" id="submit">
               Add <i id="spin" class="fas fa-spinner fa-spin"></i>
             </button>
+
+            <label  id="lbEditCar" class="lbforgot">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+              Edit
+            </label>
+            
 
             <label id="lblogin4" class="lbforgot">
               <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
