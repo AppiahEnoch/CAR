@@ -80,7 +80,7 @@ function setcarname() {
       $('#carImage').attr('src', output[1]);
     },
     error: function (xhr, status, error) {
-      alert(error);
+     alert(error);
     },
   });
 }
@@ -89,7 +89,7 @@ function savedata() {
   // alert(1)
   var formData = new FormData();
   formData.append('carImage', document.getElementById('carImageF').files[0]);
-  alert(2);
+ // alert(2);
   formData.append('carname', carname);
   formData.append('action', action);
   formData.append('amount', amount);
