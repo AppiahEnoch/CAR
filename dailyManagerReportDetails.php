@@ -2,7 +2,7 @@
 include "config.php";
 require __DIR__ . '/vendor/autoload.php';
 
-
+$total_difference=0;
 $workerName=$_POST["workerName"];
 $workerDays=$_POST["workerDays"];
 $managerMobile=null;
@@ -69,12 +69,13 @@ $total_washer_amount = 0;
 $total_amount = 0;
 
 $valid=false;
-
+//echo 12;
 while ($row = $result->fetch_assoc()) {
     $w=$row['workDay'];
+//echo 13;
     if ($w!= $workDay2) {
         $workDay2=$w;
-        
+       // echo 14;
         $current_location = $row['location'];
         // Start a new table for each location
         if ($current_location !== null) { 

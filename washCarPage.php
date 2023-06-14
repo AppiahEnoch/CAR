@@ -37,6 +37,7 @@ include "checkUser.php";
         <title>Crystal Clear Washing Bay</title>
         <link rel="stylesheet" href="./washCarPage.css" />
         <link rel="stylesheet" href="./washCarPageXS.css" />
+        <link rel="stylesheet" href="./washCarList.css" />
       </head>
       <body>
         <div id="container1">
@@ -69,20 +70,32 @@ include "checkUser.php";
         </div>
 
         <div id="container2">
-          <div id="container2Row0" class="row">
-            <input placeholder="Enter Car Name" id="tfSearch" type="search" />
-    
+          <div id="container2Row0" class="row align-items-center">
+            <div class="col-md-8">
+              <input placeholder="Enter Car Name" id="tfSearch" type="search" class="form-control" />
+            </div>
+            <div class="col-md-4">
+              <select id="car_list" class="form-select" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
           </div>
-         
-         
+        
+          <div id="listRow" class="row">
+            <!-- Other contents of the row -->
+          </div>
+        
           <div class="grid-container">
           </div>
-          
-
+        
           <div id="container2Row" class="row d-none">
             <button id="btC2done">Done</button>
           </div>
         </div>
+        
 
         <div id="container3">
 
@@ -255,6 +268,7 @@ include "checkUser.php";
       <script src="washCarPage2.js"></script>
       <script src="washCarPage3.js"></script>
       <script src="washCarPage4.js"></script>
+      <script src="car_list.js"></script>
     </html>
   </head>
 </html>

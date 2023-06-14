@@ -2,7 +2,7 @@
 include "config.php";
 require __DIR__ . '/vendor/autoload.php';
 
-
+$total_difference=0;
 //$workerName=$_POST["workerName"];
 $sysDays=$_POST["sysDays"];
 
