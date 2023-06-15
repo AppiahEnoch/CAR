@@ -17,11 +17,7 @@ gridW.innerHTML = '';
    });
 
 
-
-
    function getWasher() {
-
-  
     $.ajax({
       type: "post",
       data: {
@@ -32,8 +28,6 @@ gridW.innerHTML = '';
       dataType: "json",
       success: function (data, status) {
         var len=data.length;
-
-
 
         for(var i=0; i<data.length; i++) {
             var div = $("<div id=wd"+i +" class='grid-item'></div>");
@@ -66,8 +60,6 @@ gridW.innerHTML = '';
 
 
    function init2() {
-
-  
     $.ajax({
       type: "post",
       data: {
@@ -79,13 +71,10 @@ gridW.innerHTML = '';
       success: function (data, status) {
         var len=data.length;
 
-
-
         for(var i=0; i<data.length; i++) {
             var div = $("<div id=wd"+i +" class='grid-item'></div>");
             var img = $("<img id=wm"+i +">");
 
-          
           var  imgPath=data[i].wmobile;
           var cc="washer/"+ imgPath+".jpg";
           imgPath=cc;
@@ -136,6 +125,7 @@ lbWasherD.textContent = labelText;
   const con2 = (document.getElementById("container3").style.display =
   "none");
 });
+
 
 
 

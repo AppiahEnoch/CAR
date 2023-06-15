@@ -47,7 +47,7 @@ img {
   border-width: 1rem;
   background: rgba(3, 3, 3, 0.25);
   box-shadow: 1px 3px 50px #000;
-  display: none;
+
 }
 
 #container2 {
@@ -67,7 +67,7 @@ img {
   border-color: #13795b;
   overflow-x: auto;
   overflow-y: auto;
-
+  display: none;
 }
 
 #crytalT {

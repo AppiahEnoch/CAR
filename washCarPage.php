@@ -69,7 +69,7 @@ include "checkUser.php";
           </form>
         </div>
 
-        <div id="container2">
+        <div  id="container2">
           <div id="container2Row0" class="row align-items-center">
             <div class="col-md-8">
               <input placeholder="Enter Car Name" id="tfSearch" type="search" class="form-control" />
