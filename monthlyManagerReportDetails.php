@@ -8,7 +8,7 @@ $workerDays=$_POST["workerDays"];
 $managerMobile=null;
 $managerEmail=null;
 $managerLoc=null;
-
+$name_for_search=null;
 
 $sql = "SELECT * FROM user1 WHERE fullname=?";
 $stmt = $conn->prepare($sql); 
@@ -19,6 +19,7 @@ while ($row = $result->fetch_assoc()) {
     $managerMobile=$row["mobile"];
     $managerEmail=$row["email"];
     $managerLoc=$row["location"];
+    $name_for_search=$row["username"];
 }
 
 
@@ -36,7 +37,7 @@ amount AS total_amount,
 `action`
 FROM washed 
 WHERE 
-locationUser = '$workerName' 
+locationUser = '$name_for_search' 
 AND recdate BETWEEN DATE_SUB(NOW(), INTERVAL $workerDays MONTH) AND NOW() order by recdate asc
 ";
 
