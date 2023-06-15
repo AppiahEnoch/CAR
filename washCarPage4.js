@@ -58,7 +58,7 @@ function processSelectedItems(globalArray, data2) {
     // After all AJAX requests are done
     $.when.apply($, ajaxRequests).done(function() {
         hideAllSpin()
-        window.location.reload();
+      
       openPage_blank("receipt.php");
     });
   }
