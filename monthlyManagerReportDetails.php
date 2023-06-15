@@ -8,7 +8,7 @@ $workerDays=$_POST["workerDays"];
 $managerMobile=null;
 $managerEmail=null;
 $managerLoc=null;
-$name_for_search=null;
+$name_for_search=$workerName;
 
 $sql = "SELECT * FROM user1 WHERE fullname=?";
 $stmt = $conn->prepare($sql); 
