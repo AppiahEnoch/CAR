@@ -175,7 +175,7 @@ function getWorkerDaily() {
     url: 'dailyworkerReportDetails.php',
     dataType: 'text',
     success: function (data, status) {
-      alert(data) 
+   //   alert(data) 
       if (data != 11) {
         showAEMerror('NO RECORD FOUND', 'NO RECORD FOUND');
         return;
