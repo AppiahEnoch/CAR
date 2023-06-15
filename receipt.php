@@ -94,6 +94,6 @@ if ($result->num_rows > 0) {
     $pdf->Cell(60, 10, 'No results', 0, 1, 'C');
 }
 
-$pdf->Output();
+$pdf->Output('D','receipt.pdf');
 
 ?>
