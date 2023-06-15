@@ -17,11 +17,26 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $workerName);
 $stmt->execute();
 $result = $stmt->get_result();
-while ($row = $result->fetch_assoc()) {
+if ($row = $result->fetch_assoc()) {
     $managerMobile=$row["mobile"];
     $managerEmail=$row["email"];
     $managerLoc=$row["location"];
     $name_for_search=$row["username"];
+}
+
+else {
+    $sql = "SELECT * FROM sysadmin WHERE username=?";
+    $stmt = $conn->prepare($sql); 
+    $stmt->bind_param("s", $workerName);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($row = $result->fetch_assoc()) {
+        $managerMobile=$row["mobile"];
+        $managerEmail=$row["email"];
+        $managerLoc=$row["location"];
+        $name_for_search=$row["username"];
+    }
+
 }
 
 
