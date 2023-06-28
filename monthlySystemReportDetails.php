@@ -93,7 +93,7 @@ if($total_amount>0){
         $pdf->SetFont('Arial', 'B', 12);
         $pdf->Cell(90, 10, 'worker', 1, 0, 'C');
         $pdf->Cell(35, 10, 'Car NO#', 1, 0, 'C');
-        $pdf->Cell(35, 10, 'Action', 1, 0, 'C');
+        $pdf->Cell(35, 10, 'Service', 1, 0, 'C');
         $pdf->Cell(45, 10, 'Worker Amount', 1, 0, 'C');
         $pdf->Cell(35, 10, 'Amount', 1, 0, 'C');
         $pdf->Cell(35, 10, 'Difference', 1, 1, 'C');

@@ -183,19 +183,18 @@ include "closeSession.php";
                 </div>
               </li>
 
-              <li class="nav-item d-none">
+              <li class="nav-item ">
                 <div class="dropdown">
                   <a
-                    class="btn btn-secondary dropdown-toggle"
-                    href="#"
+                    class="btn btn-secondary"
+                    href="frequently_washed.php"
                     role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
+                   
                   >
-                    Academics
+                  Top Customer
                   </a>
 
-                  <ul class="dropdown-menu">
+                  <ul class="dropdown-menu d-none">
                     <li id="gh">
                       <a class="dropdown-item" href="#"
                         >Upload Student Results</a

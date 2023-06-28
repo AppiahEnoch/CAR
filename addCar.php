@@ -47,7 +47,7 @@
          
           <form id="form">
             <input required type="text" id="carname" placeholder="Car name"/>
-            <input required  type="text" id="action" placeholder="Action eg. washing"/>
+            <input required  type="text" id="action" placeholder="Service eg. washing"/>
             <input required  type="number" id="amount" placeholder="Amount"/>
             <input  required type="number" id="washeramount" placeholder="Washer amount"/>
           
