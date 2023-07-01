@@ -35,7 +35,8 @@ include "checkUser.php";
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <title>Crystal Clear Washing Bay</title>
-        <link rel="stylesheet" href="./washCarPage.css" />
+        <link rel="stylesheet" href="./washCarPage.css?<?php echo filemtime("washCarPage.css"); ?>" />
+
         <link rel="stylesheet" href="./washCarPageXS.css" />
         <link rel="stylesheet" href="./washCarList.css" />
       </head>
@@ -265,9 +266,10 @@ include "checkUser.php";
 
       <script src="washerPage.js"></script>
       <script src="washCarPage1.js"></script>
-      <script src="washCarPage2.js"></script>
-      <script src="washCarPage3.js"></script>
-      <script src="washCarPage4.js"></script>
+      <script src="washCarPage2.js?<?php echo filemtime("washCarPage2.js");?>"></script>
+      <script src="washCarPage3.js?<?php echo filemtime("washCarPage3.js");?>"></script>
+      <script src="washCarPage4.js?<?php echo filemtime("washCarPage4.js");?>"></script>
+
       <script src="car_list.js"></script>
     </html>
   </head>

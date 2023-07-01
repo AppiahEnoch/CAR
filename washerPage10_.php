@@ -1,5 +1,6 @@
 <?php
 
+
 include "config.php";
 
 $keyword = $_POST["keyword"]; // Assumes 'keyword' is sent from client side

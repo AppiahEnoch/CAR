@@ -75,6 +75,13 @@ include "checkSysadmin.php";
 
                 Code</a>
             </li>
+            <li class="nav-item">
+    <a id="ll3" class="nav-link" href="editReceiptHTML.php">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      Edit  Receipt
+    </a>
+</li>
+
 
      
             <li class="nav-item">
@@ -338,7 +345,7 @@ include "checkSysadmin.php";
         <div class="row">
         <select name="deleteOptions" id="deleteOptions">
                   <option value="0">CHOOSE OPTION</option>
-                  <option value="1">ALL USER DATA</option>
+                  <option value="1">ALL MANAGERS</option>
                   <option value="2">ALL VEHICLE</option>
                   <option value="3">ALL WORKERS</option>
         

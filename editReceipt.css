@@ -1,0 +1,37 @@
+#wrapper1 {
+  width: 30rem;
+  height: 28rem;
+  border: 0.1rem solid rgb(236, 232, 232);
+  background-color: #f2f2f2;
+}
+
+.scrollable-table {
+  border: 1px solid #000;
+  width: 100%;
+  overflow-x: auto;
+  max-height: 25rem;
+  overflow-y: auto;
+}
+.scrollable-table .table {
+  min-width: 600px;
+  margin-bottom: 0;
+}
+.scrollable-table .table td, .scrollable-table .table th {
+  padding: 10px;
+  border: 1px solid #000;
+  background-color: white;
+  font-size: smaller;
+}
+
+#receiptTable td:nth-child(3) {
+  width: 12rem;
+}
+#receiptTable td:nth-child(5), #receiptTable td:nth-child(6) {
+  width: 5rem;
+}
+
+/* Add this class to your SCSS */
+.selected-cell {
+  background-color: red;
+  color: white;
+}/*# sourceMappingURL=editReceipt.css.map */

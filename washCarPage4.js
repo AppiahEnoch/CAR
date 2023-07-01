@@ -25,6 +25,8 @@ function processSelectedItems(globalArray, data2) {
             if (aeEmpty(globalCarNumber)) {
                 globalCarNumber = "not Available";
             }
+
+     
   
             // Prepare the data to be sent
             var payload = {
@@ -57,8 +59,13 @@ function processSelectedItems(globalArray, data2) {
   
     // After all AJAX requests are done
     $.when.apply($, ajaxRequests).done(function() {
-        hideAllSpin()
-      
+      // reload window
+
+      if (aeEmpty(globalCarName)) {
+        hideAllSpin();
+        return
+      }
+    window.location.reload(true);
       openPage_blank("receipt.php");
     });
   }

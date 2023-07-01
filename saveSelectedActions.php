@@ -1,11 +1,23 @@
 <?php
 include "config.php";
 require __DIR__ . '/vendor/autoload.php';
-
+$receiptid=null;
 if (!isset($_SESSION)) {
     session_start();
+// check if not isset  $_SESSION["receipt"]
+
+  }
+
+
+  if(!isset($_SESSION["receipt"])){
+
+    $_SESSION["receipt"]=generateUniqueID();
+    $receiptid=$_SESSION["receipt"];
   
   }
+
+
+  $receiptid=$_SESSION["receipt"];
 
 $washer = mysqli_real_escape_string($conn, $_POST['washer']);
 $carname = mysqli_real_escape_string($conn, $_POST['carname']);
@@ -17,7 +29,10 @@ $washeramount = floatval($_POST['washeramount']);
 
 
 
-$receiptid=generateUniqueID();
+
+
+
+
 
 $location = $_SESSION["LOC"];
 $locationUser=  $_SESSION["username"];

@@ -54,7 +54,7 @@ if ($result->num_rows > 0) {
     $pdf->Ln(-1); // Line break
 
     // Column headers
-    $pdf->Cell(40, 10, 'Action', 1, 0, 'C');
+    $pdf->Cell(40, 10, 'Service', 1, 0, 'C');
     $pdf->Cell(20, 10, 'Amount', 1, 1, 'C'); // Line end
 
     // Display the first row

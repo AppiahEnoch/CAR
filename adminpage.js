@@ -367,6 +367,7 @@ function deleteAllVehicle() {
     dataType: 'json',
     success: function (data, status) {
       //alert(data)
+      Window.location.reload();
     },
     error: function (xhr, status, error) {
       console.log(error);
@@ -380,7 +381,7 @@ function deleteAllWorkers() {
     url: 'deleteAllWorkers.php',
     dataType: 'json',
     success: function (data, status) {
-      //alert(data)
+      Window.location.reload();
     },
     error: function (xhr, status, error) {
       console.log(error);
@@ -398,7 +399,7 @@ function deleteWorker() {
     },
     dataType: 'json',
     success: function (data, status) {
-      alert(data);
+      Window.location.reload();
     },
     error: function (xhr, status, error) {
       console.log(error);
@@ -415,7 +416,7 @@ function deleteUser() {
     },
     dataType: 'json',
     success: function (data, status) {
-      alert(data);
+      Window.location.reload();
     },
     error: function (xhr, status, error) {
       console.log(error);
