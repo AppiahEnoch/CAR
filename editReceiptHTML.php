@@ -39,7 +39,7 @@
                     <th>Washer</th>
                     <th>Car Name</th>
                     <th>Car Number</th>
-                    <th>Action</th>
+                    <th>Service</th>
                     <th>Amount</th>
                     <th>Washer Amount</th>
                     <th>User Location</th>

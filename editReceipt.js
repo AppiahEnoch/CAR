@@ -16,7 +16,7 @@ $(document).ready(function() {
                 row.append($("<td contenteditable='true' data-column='washer'></td>").text(record.washer));
                 row.append($("<td contenteditable='true' data-column='carname'></td>").text(record.carname));
                 row.append($("<td contenteditable='true' data-column='carNumber'></td>").text(record.carNumber));
-                row.append($("<td contenteditable='true' data-column='action'></td>").text(record.action));
+                row.append($("<td contenteditable='true' data-column='Service'></td>").text(record.action));
                 row.append($("<td contenteditable='true' data-column='amount'></td>").text(record.amount));
                 row.append($("<td contenteditable='true' data-column='washeramount'></td>").text(record.washeramount));
                 row.append($("<td contenteditable='true' data-column='locationUser'></td>").text(record.locationUser));
