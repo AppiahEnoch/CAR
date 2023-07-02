@@ -65,7 +65,7 @@ function processSelectedItems(globalArray, data2) {
         hideAllSpin();
         return
       }
-   //   window.location.reload();
+ 
   
       // Create and trigger the anchor tag
       var anchor = document.createElement('a');
@@ -74,6 +74,9 @@ function processSelectedItems(globalArray, data2) {
       anchor.style.display = 'none';
       document.body.appendChild(anchor);
       anchor.click();
+
+
+  
     });
   }
   

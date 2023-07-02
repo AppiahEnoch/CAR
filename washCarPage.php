@@ -43,6 +43,7 @@ include "checkUser.php";
       <body>
         <div id="container1">
           <div id="crytalT" class="card">
+            
             <h2 id="wash1">WASH CAR <i id="exitIcon" class="fa fa-sign-out" aria-hidden="true" title="Exit"></i></h2>
           </div>
           <form id="form">
