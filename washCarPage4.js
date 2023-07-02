@@ -65,7 +65,7 @@ function processSelectedItems(globalArray, data2) {
         hideAllSpin();
         return
       }
-      window.location.reload();
+   //   window.location.reload();
   
       // Create and trigger the anchor tag
       var anchor = document.createElement('a');
