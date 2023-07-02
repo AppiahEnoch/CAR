@@ -21,6 +21,10 @@ $('#exitIcon').click(function () {
   openPageReplace('login.php');
 });
 
+$(' #refresh').click(function () {
+  window.location.reload();
+});
+
 var chosenCar = null;
 
 function getCars() {

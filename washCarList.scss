@@ -10,4 +10,16 @@
     background-color: transparent;
     color: #f2f2f2;
   }
+
+  #refresh {
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Modify the shadow properties as per your preference */
+
+    &:hover{
+
+      transform: scale(2.1);
+    }
+  }
+  
   
