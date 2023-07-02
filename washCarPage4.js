@@ -65,11 +65,15 @@ function processSelectedItems(globalArray, data2) {
         hideAllSpin();
         return
       }
-window.location.reload();
-setTimeout(function() {
-  openPage_blank("receipt.php");
-}, 1000); // Adjust the delay (in milliseconds) as per your requirements
-
+      window.location.reload();
+  
+      // Create and trigger the anchor tag
+      var anchor = document.createElement('a');
+      anchor.href = 'receipt.php';
+      anchor.target = '_blank';
+      anchor.style.display = 'none';
+      document.body.appendChild(anchor);
+      anchor.click();
     });
   }
   
