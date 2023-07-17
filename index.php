@@ -458,7 +458,7 @@ CAROUSEL ELEMENT BELOW THIS LINE
       crossorigin="anonymous"
     ></script>
 
-
-    <script src="fillserviceCards.js"></script>
+    <script src="fillserviceCards.js?version=<?php echo filemtime('fillserviceCards.js'); ?>"></script>
+    
   </body>
 </html>
