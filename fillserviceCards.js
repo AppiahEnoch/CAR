@@ -15,7 +15,8 @@ function getManagerNumber() {
       url: "selectMangerdetails.php",
       dataType: "text",
       success: function (data, status) {
-        $("#managerNumber").text(data);
+        alert(data)
+       /// $("#managerNumber").text(data);
       },
       error: function (xhr, status, error) {
         // alert(error);
