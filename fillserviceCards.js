@@ -16,7 +16,7 @@ function getManagerNumber() {
       dataType: "text",
       success: function (data, status) {
         alert(data)
-       /// $("#managerNumber").text(data);
+       ///$("#managerNumber").text(data);
       },
       error: function (xhr, status, error) {
         // alert(error);
