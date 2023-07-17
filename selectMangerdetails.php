@@ -13,7 +13,7 @@ if ($stmt->execute()) {
     $result = $stmt->get_result();
     if($row = $result->fetch_assoc()) {
         $mobile = $row['mobile'];
-        echo $mobile;
+        echo 33;
     }
 } 
 // Close connection
