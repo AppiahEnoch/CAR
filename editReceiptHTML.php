@@ -1,6 +1,4 @@
-<?php
-include "closeSession.php";
-?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
