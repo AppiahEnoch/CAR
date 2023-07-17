@@ -1,19 +1,24 @@
 <?php
-// start session
+// Start the session (required to handle sessions in PHP)
 session_start();
 
-  // unset all session variables
-  $_SESSION = array();
+// Unset all session variables
+$_SESSION = array();
 
-  // destroy session
-  session_destroy();
+// Destroy the session
+session_destroy();
 
-  // unset session cookie
-  if (ini_get("session.use_cookies")) {
-    $params = session_get_cookie_params();
-    setcookie(session_name(), '', time() - 42000,
-        $params["path"], $params["domain"],
-        $params["secure"], $params["httponly"]
-    );
-  }
+// Set cookie parameters. Get these from your php.ini file or use default parameters
+$cookieParams = session_get_cookie_params();
 
+// Delete the actual cookie.
+setcookie(session_name(), '', time() - 42000,
+    $cookieParams['path'], 
+    $cookieParams['domain'],
+    $cookieParams['secure'], 
+    $cookieParams['httponly']
+);
+
+// Redirect to a page afterwards if necessary
+
+?>
