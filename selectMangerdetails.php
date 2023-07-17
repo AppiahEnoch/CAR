@@ -11,16 +11,13 @@ $stmt = $conn->prepare($query);
 if ($stmt->execute()) {
     // Fetch result if necessary
     $result = $stmt->get_result();
-    while ($row = $result->fetch_assoc()) {
+    if($row = $result->fetch_assoc()) {
         $mobile = $row['mobile'];
         echo $mobile;
     }
-} else {
-    echo "Error: " . $stmt->error;
-}
-
+} 
 // Close connection
 $conn->close();
-?>
+
 
 
