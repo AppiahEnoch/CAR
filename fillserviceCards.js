@@ -7,22 +7,30 @@ $(document).ready(function() {
 
 
 
-  
+// Define the function
 function getManagerNumber() {
-    $.ajax({
-      type: "post",
-      cache: false,
-      url: "selectMangerdetails.php",
-      dataType: "text",
-      success: function (data, status) {
-        alert(data)
-       ///$("#managerNumber").text(data);
-      },
-      error: function (xhr, status, error) {
-        // alert(error);
-      },
-    });
-  }
+  // Make an AJAX call
+  $.ajax({
+    type: "POST", // Use a POST request
+    cache: false, // Don't cache the result
+    url: "selectMangerdetails.php", // URL to send the request to
+    dataType: "text", // The type of data we're expecting back from the server
+    
+    // Function to run on a successful response
+    success: function (data, status) {
+    alert(data)
+      // $("#managerNumber").text(data); // Update the text of the HTML element with the id "managerNumber"
+    },
+    
+    // Function to run if the request fails
+    error: function (xhr, status, error) {
+      console.error("Error: ", error); // Log the error to the console
+    },
+  });
+}
+
+
+
 
 
 
