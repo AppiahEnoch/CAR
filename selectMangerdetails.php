@@ -9,15 +9,14 @@ $stmt = $conn->prepare($query);
 
 // Try executing the statement
 if ($stmt->execute()) {
+    // Bind results
+    $stmt->bind_result($mobile);
+
     // Fetch result if necessary
-    $result = $stmt->get_result();
-    if($row = $result->fetch_assoc()) {
-        $mobile = $row['mobile'];
-        echo 33;
+    if($stmt->fetch()) {
+        echo $mobile;
     }
 } 
 // Close connection
 $conn->close();
-
-
-
+?>
