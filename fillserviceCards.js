@@ -18,8 +18,8 @@ function getManagerNumber() {
     
     // Function to run on a successful response
     success: function (data, status) {
-    alert(data)
-      // $("#managerNumber").text(data); // Update the text of the HTML element with the id "managerNumber"
+
+      $("#managerNumber").text(data); // Update the text of the HTML element with the id "managerNumber"
     },
     
     // Function to run if the request fails

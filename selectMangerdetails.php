@@ -11,7 +11,7 @@ $result = $conn->query($query);
 if ($result->num_rows > 0) {
     // Output data of each row
     if($row = $result->fetch_assoc()) {
-        echo "Mobile: " . $row["mobile"];
+        echo $row["mobile"];
     }
 } else {
     echo "0 results";
