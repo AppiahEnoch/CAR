@@ -9,12 +9,13 @@ $stmt = $conn->prepare($query);
 
 // Try executing the statement
 if ($stmt->execute()) {
-    // Bind results
-    $stmt->bind_result($mobile);
+    // Bind results to each column
+    $stmt->bind_result($fullname, $username, $password1, $email, $mobile, $location);
 
-    // Fetch result if necessary
-    if($stmt->fetch()) {
+    // Fetch each result row
+    while($stmt->fetch()) {
         echo $mobile;
+        
     }
 } 
 // Close connection
