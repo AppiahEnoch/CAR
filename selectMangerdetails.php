@@ -2,22 +2,21 @@
 include "config.php";
 
 // Prepare your query
-$query = "SELECT * FROM sysadmin";
+$query = "SELECT * FROM sysadmin limit 1";
 
-// Prepare statement
-$stmt = $conn->prepare($query);
+// Execute query
+$result = $conn->query($query);
 
-// Try executing the statement
-if ($stmt->execute()) {
-    // Bind results to each column
-    $stmt->bind_result($fullname, $username, $password1, $email, $mobile, $location);
-
-    // Fetch each result row
-    while($stmt->fetch()) {
-        echo $mobile;
-        
+// Check if there are results
+if ($result->num_rows > 0) {
+    // Output data of each row
+    if($row = $result->fetch_assoc()) {
+        echo "Mobile: " . $row["mobile"];
     }
-} 
+} else {
+    echo "0 results";
+}
+
 // Close connection
 $conn->close();
 ?>
