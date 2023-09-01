@@ -7,7 +7,7 @@ if($remote_host == "AECleanCodes1"){
 $DBhostname = "localhost";
 $DBusername = "root";
 $DBpassword = "";
-$database = "car";
+$database = "car2";
 $DBport = "63943"; 
     
 }
