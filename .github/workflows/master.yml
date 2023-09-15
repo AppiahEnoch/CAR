@@ -7,17 +7,10 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
-
-    - name: 📂 Install lftp
-      run: sudo apt-get install lftp
-
+    
     - name: 📂 Sync files
-      run: |
-        lftp ftp://$USERNAME:$PASSWORD@ftp.bstilibrary.com -e "
-        set ssl:verify-certificate no;
-        mirror -R . /; 
-        quit
-        "
-      env:
-        USERNAME: ${{ secrets.USERNAME }}
-        PASSWORD: ${{ secrets.PASSWORD }}
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ftp.crysta.online
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
