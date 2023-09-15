@@ -146,7 +146,7 @@
                  
                   >
                   <i class="fa fa-car" aria-hidden="true"></i>
-                    Get Service-22
+                    Get Service
                   </a>
                 </div>
               </li>
