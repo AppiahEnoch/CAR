@@ -4,8 +4,7 @@ include "config.php";
 './vendor/autoload.php';
 require('mc_table.php');
 
-echo 1;
-exit;
+
 
 $finalFileName='report/customerVehicleReport.pdf';
 
@@ -18,7 +17,8 @@ $carNumber=$_POST["carNumber"];
 $carNumber = trim($carNumber);
 
 
-
+echo 1;
+exit;
 
 
 // CREATE A PDF HEADER
