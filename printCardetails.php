@@ -17,7 +17,7 @@ $carNumber=$_POST["carNumber"];
 $carNumber = trim($carNumber);
 
 
-echo 1;
+echo $carNumber;
 exit;
 
 
