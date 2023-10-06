@@ -72,7 +72,7 @@ function printCarDetails(carNumber) {
       dataType: "text",
       success: function (data, status) {
 
-          // alert(data) 
+           alert(data) 
      // console.log(data)
       if (data != 1) {
         showAEMerror('NO RECORD FOUND', 'NO RECORD FOUND');
