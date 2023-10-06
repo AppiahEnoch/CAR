@@ -1,7 +1,8 @@
 <?php
 session_start();
 require_once './vendor/autoload.php';
-include "config.php";
+include "./config.php";
+
 
 require('mc_table.php');
 
@@ -30,7 +31,7 @@ $pdf->Ln();
 $pdf->Ln();
 
 $pdf->SetFont('Arial', '', 10);
-$pdf->SetWidths(array(40, 40, 30, 40));
+$pdf->SetWidths(array(60, 40, 30, 30, 30));
 
 $sql = "SELECT misc.*, washer.wfullname,
         YEAR(misc.DateAdded) AS YearNum
@@ -46,6 +47,7 @@ while ($row = $result->fetch_assoc()) {
     $year = $row['YearNum'];
 
     $yearwise_data[$year][] = [
+        'description' => $row['Description'],
         'totalAmount' => $row['totalAmount'],
         'washerAmount' => $row['washer_amount'],
         'difference' => $row['totalAmount'] - $row['washer_amount'],
@@ -59,7 +61,7 @@ foreach ($yearwise_data as $year => $records) {
     $pdf->Ln(2);
 
     $pdf->SetFont('Arial', '', 10);
-    $pdf->Row(['Total Amount', 'Washer Amount', 'Difference', 'Washer Fullname']);
+    $pdf->Row(['Description', 'Total Amount', 'Washer Amount', 'Difference', 'Washer Fullname']);
 
     $totalAmountForYear = 0;
     $washerAmountForYear = 0;
@@ -67,6 +69,7 @@ foreach ($yearwise_data as $year => $records) {
 
     foreach ($records as $index => $record) {
         $pdf->Row([
+            $record['description'],
             $record['totalAmount'],
             $record['washerAmount'],
             $record['difference'],
@@ -80,6 +83,7 @@ foreach ($yearwise_data as $year => $records) {
 
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Row([
+        '',
         'Total: ' . $totalAmountForYear,
         'Total: ' . $washerAmountForYear,
         'Total: ' . $differenceForYear,

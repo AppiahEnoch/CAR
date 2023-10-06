@@ -1,7 +1,8 @@
 <?php
 session_start();
 require_once './vendor/autoload.php';
-include "config.php";
+include "./config.php";
+
 
 require('mc_table.php');
 
@@ -34,7 +35,7 @@ $pdf->Ln();
 $pdf->Ln();
 
 $pdf->SetFont('Arial', '', 10);
-$pdf->SetWidths(array(40, 40, 30, 40));
+$pdf->SetWidths(array(60, 40, 30, 30, 30, 30));
 
 $sql = "SELECT misc.*, washer.wfullname,
         DAYNAME(misc.DateAdded) AS DayName,
@@ -54,6 +55,7 @@ while ($row = $result->fetch_assoc()) {
     $key = $day . ', ' . $date;
 
     $daywise_data[$key][] = [
+        'description' => $row['Description'],
         'totalAmount' => $row['totalAmount'],
         'washerAmount' => $row['washer_amount'],
         'difference' => $row['totalAmount'] - $row['washer_amount'],
@@ -67,7 +69,7 @@ foreach ($daywise_data as $day => $records) {
     $pdf->Ln(2);
 
     $pdf->SetFont('Arial', '', 10);
-    $pdf->Row(['Total Amount', 'Washer Amount', 'Difference', 'Washer Fullname']);
+    $pdf->Row(['Description', 'Total Amount', 'Washer Amount', 'Difference', 'Washer Fullname']);
 
     $totalAmountForDay = 0;
     $washerAmountForDay = 0;
@@ -75,6 +77,7 @@ foreach ($daywise_data as $day => $records) {
 
     foreach ($records as $index => $record) {
         $pdf->Row([
+            $record['description'],
             $record['totalAmount'],
             $record['washerAmount'],
             $record['difference'],
@@ -88,6 +91,7 @@ foreach ($daywise_data as $day => $records) {
 
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Row([
+        '',
         'Total: ' . $totalAmountForDay,
         'Total: ' . $washerAmountForDay,
         'Total: ' . $differenceForDay,

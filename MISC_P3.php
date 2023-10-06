@@ -1,7 +1,8 @@
 <?php
 session_start();
 require_once './vendor/autoload.php';
-include "config.php";
+include "./config.php";
+
 
 require('mc_table.php');
 
@@ -30,7 +31,7 @@ $pdf->Ln();
 $pdf->Ln();
 
 $pdf->SetFont('Arial', '', 10);
-$pdf->SetWidths(array(40, 40, 30, 40));
+$pdf->SetWidths(array(60, 40, 30, 30, 30));
 
 $sql = "SELECT misc.*, washer.wfullname,
         MONTHNAME(misc.DateAdded) AS MonthName,
@@ -50,6 +51,7 @@ while ($row = $result->fetch_assoc()) {
     $key = $year . ' - ' . $month;
 
     $monthwise_data[$key][] = [
+        'description' => $row['Description'],
         'totalAmount' => $row['totalAmount'],
         'washerAmount' => $row['washer_amount'],
         'difference' => $row['totalAmount'] - $row['washer_amount'],
@@ -63,7 +65,7 @@ foreach ($monthwise_data as $month => $records) {
     $pdf->Ln(2);
 
     $pdf->SetFont('Arial', '', 10);
-    $pdf->Row(['Total Amount', 'Washer Amount', 'Difference', 'Washer Fullname']);
+    $pdf->Row(['Description', 'Total Amount', 'Washer Amount', 'Difference', 'Washer Fullname']);
 
     $totalAmountForMonth = 0;
     $washerAmountForMonth = 0;
@@ -71,6 +73,7 @@ foreach ($monthwise_data as $month => $records) {
 
     foreach ($records as $index => $record) {
         $pdf->Row([
+            $record['description'],
             $record['totalAmount'],
             $record['washerAmount'],
             $record['difference'],
@@ -84,6 +87,7 @@ foreach ($monthwise_data as $month => $records) {
 
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Row([
+        '',
         'Total: ' . $totalAmountForMonth,
         'Total: ' . $washerAmountForMonth,
         'Total: ' . $differenceForMonth,
