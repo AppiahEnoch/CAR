@@ -4,6 +4,9 @@ include "config.php";
 './vendor/autoload.php';
 require('mc_table.php');
 
+echo 1;
+exit;
+
 $finalFileName='report/customerVehicleReport.pdf';
 
 $pageTitle="CUSTOMER VEHICLE REPORT";
