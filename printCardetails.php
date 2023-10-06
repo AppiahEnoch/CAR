@@ -17,9 +17,6 @@ $carNumber=$_POST["carNumber"];
 $carNumber = trim($carNumber);
 
 
-echo $carNumber;
-exit;
-
 
 // CREATE A PDF HEADER
 // SELECT app_name, location, email FROM app;
@@ -30,6 +27,8 @@ $sql1 = "SELECT `app_name` AS BUSSINESS,`email`,`location`as Loc FROM `app` WHER
 
 
 // SECOND QUERY YOU MAY FORM YOUR QUERY IN ANY WAY HERE I AM JUST GIVING AN EXAMPLE
+
+
 
 
 
