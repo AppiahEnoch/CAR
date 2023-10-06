@@ -91,9 +91,6 @@ $pdf = createReportHeading($conn, $sql1, $pageTitle, $logo);
 
 
 
-echo $carNumber;
-exit;
-// CREATE TABLES
 
 $records = fetchRecords($conn, $sql2);
 
