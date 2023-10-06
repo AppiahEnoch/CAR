@@ -90,6 +90,9 @@ $logo = "5.jpg"; // replace with the actual path to your company logo
 $pdf = createReportHeading($conn, $sql1, $pageTitle, $logo);
 
 
+
+echo $carNumber;
+exit;
 // CREATE TABLES
 
 $records = fetchRecords($conn, $sql2);
