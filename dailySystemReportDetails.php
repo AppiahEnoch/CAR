@@ -1,246 +1,369 @@
 <?php
+session_start();
 include "config.php";
-require __DIR__ . '/vendor/autoload.php';
+'./vendor/autoload.php';
+require('mc_table.php');
+//report/systemDailyReport.pdf
 
-$total_difference=0;
-//$workerName=$_POST["workerName"];
+$finalFileName='report/systemDailyReport.pdf'; 
+
+
+
+$pageTitle="SYSTEM DAILY REPORT";
+
+
+
+// CREATE A PDF HEADER
+// SELECT app_name, location, email FROM app;
+
+//$sql1 = "SELECT wfullname as name, wmobile as mobile, wemail as email FROM washer WHERE wfullname  = '$workerNameSanitized'";
+
+$sql1 = "SELECT `app_name` AS BUSSINESS,`email`,`location`as Loc FROM `app` WHERE 1";
+
+
+// SECOND QUERY YOU MAY FORM YOUR QUERY IN ANY WAY HERE I AM JUST GIVING AN EXAMPLE
+
+
+
+
 $sysDays=$_POST["sysDays"];
 
-
-
-
-
-
-
-
-
 // Retrieve data from the 'washed' table
-$sql = "SELECT 
+$sql2 = "SELECT 
 location, 
+locationUser AS Manager,
 washer,
-locationUser,
-DATE_FORMAT(recdate, '%W, %D %M, %Y') AS workDay, 
-carNumber AS cars_worked, 
-washeramount AS washer_amount, 
-amount AS total_amount,
-`action`
+DATE_FORMAT(recdate, '%W, %D %M, %Y') AS 'DAY', 
+carNumber AS 'vehicle No#', `action`,
+washeramount AS 'washer amount', 
+amount AS 'total amount', amount - washeramount AS 'difference'
+
 FROM washed 
 WHERE 
 recdate BETWEEN DATE_SUB(NOW(), INTERVAL $sysDays DAY) AND NOW() order by recdate, locationUser,`location` asc
 ";
 
-$result = $conn->query($sql);
-// Initialize the PDF document
-$pdf = new FPDF('L', 'mm', 'A4');
-$pdf->AddPage();
-$pdf->SetFont('Arial', 'BU', 16);
 
-$pdf->Cell(0, 10, 'System Daily Report Details', 0, 1, 'C');
-$pdf->SetFont('Arial', 'B', 12);
 
-$pdf->SetFont('Arial', 'B', 12);
-$pdf->SetTextColor(255, 0, 0);
-$pdf->Cell(0, 10, 'All amounts are in Ghana Cedis (GHS)', 0, 1, 'C');
-$pdf->SetFont('Arial', 'B', 16);
-$pdf->SetTextColor(0, 0, 0);
-// Loop through the data and create tables for each location
 
-$current_location = null;
-$workDay2 = null;
-$total_cars = 0;
-$total_washer_amount = 0;
-$total_amount = 0;
 
-$valid=false;
 
-while ($row = $result->fetch_assoc()) {
-    $w=$row['workDay'];
-    if ($w!= $workDay2) {
-        $workDay2=$w;
-        $current_location = $row['location'];
-        // Start a new table for each location
-        if ($current_location !== null) { 
-            $valid=true;
 
-            // Add a summary row for the previous location
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(90, 10, 'Total', 1, 0, 'R');
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->SetTextColor(255, 0, 0);
-            
-            $pdf->Cell(35, 10, $total_cars, 1, 0, 'C');
-            $pdf->Cell(35, 10, "     ", 1, 0, 'C');
-            $pdf->Cell(45, 10, $total_washer_amount, 1, 0, 'C');
-            $pdf->Cell(35, 10, $total_amount, 1, 0, 'C');
-            $pdf->Cell(35, 10, $total_difference, 1, 1, 'C');
-            $pdf->Ln();
-            $pdf->SetTextColor(0, 0, 0);
-            $pdf->SetFont('Arial', '', 12);
 
+
+
+
+
+
+
+
+
+
+
+
+
+// MAKE THESE NULL IF YOU WILL NOT NEED THEM
+
+$criteria1 = 'location';
+$criteria2 = 'DAY';
+
+
+$criteria1 =null;
+//$criteria2 = null;
+
+
+// SET COLUMN WIDTHS
+$widths = [30, 30, 20];  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$logo = "5.jpg"; // replace with the actual path to your company logo
+$pdf = createReportHeading($conn, $sql1, $pageTitle, $logo);
+
+
+// CREATE TABLES
+
+$workerName = "KOFI BOAKYE";
+$workerDays = 7;
+$records = fetchRecords($conn, $sql2);
+
+  $isCreated=    generateReport($pdf,$conn, $records,$criteria1,$criteria2, $widths,$finalFileName);
+
+  echo $isCreated;
+
+
+
+
+function createReportHeading($conn, $sql, $reportTitle = 'Report', $logoPath = null) {
+    $pdf = new PDF_MC_Table();
+    $pdf->AddPage('L', 'A4');
+  // Right aligned cell
+
+    $pdf->SetFont('Arial', 'I', 12);
+    $timestamp = date("l, jS F, Y , h:i a");
+    $pdf->SetXY(-150, 10);  // Adjust position for right alignment
+    $pdf->Cell(140, 10, $timestamp, 0, 2, 'R');
+    $pdf->SetFont('Arial', 'I', 8);
+    //reduce line   space\
+  
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+
+        // If logo is provided, add it to the top left
+        if ($logoPath && file_exists($logoPath)) {
+            $pdf->Image($logoPath, 5, 8, 33);
+            $pdf->Ln(5);  // Adjusted for better spacing after the logo
         }
 
-        $pdf->SetFont('Arial', 'B', 14);
-        $pdf->Cell(0, 10, "location: ". $row['location'], 0, 1, 'L');
-        $pdf->Cell(0, 10, "Manager: ". $row['locationUser'], 0, 1, 'L');
-        $pdf->Cell(0, 10, "DAY: ". $row['workDay'], 0, 1, 'L');
+        $pdf->SetFont('Arial', 'B', 20);
+        $pdf->Cell(0, 10, $reportTitle, 0, 1, 'C');
+
+        // Loop through each column dynamically
+        foreach ($user as $columnName => $columnValue) {
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(0, 10, strtoupper($columnName) . ": " . strtoupper($columnValue), 0, 1, 'C');
+            $pdf->Ln(-2);
+        }
+
+        $pdf->Ln();
+        $pdf->SetDrawColor(0, 0, 0); // Black color
+        $pdf->Line(10, $pdf->GetY(), 290, $pdf->GetY());
+        $pdf->Ln(5);
+    }
+
+    return $pdf; // Return the PDF object with the heading for further modifications or output
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+function fetchRecords($conn, $sql) {
+    // Ensure workerName and workerDays are properly sanitized
+
+
+    $result = $conn->query($sql);
+
+    if (!$result) {
+        die("Error executing query: " . $conn->error);
+    }
+
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+
+
+
+function generateReport($pdf, $conn, $records, $groupByColumn1 = null, $groupByColumn2 = null, $columnWidths = [], $finalFileName = null) {
+    $isCreated = 0;
+    $pdf->SetFont('Arial', 'B', 10);
+
+    if (is_null($records) || !is_array($records) || empty($records)) {
+        return;
+    }
+
+    $groupedRecords = [];
+    foreach ($records as $record) {
+        $groupValue1 = $groupByColumn1 ? $record[$groupByColumn1] : '';
+        $groupValue2 = $groupByColumn2 ? $record[$groupByColumn2] : '';
+
+        $compositeKey = "{$groupValue1}_{$groupValue2}";
+
+        if (!isset($groupedRecords[$compositeKey])) {
+            $groupedRecords[$compositeKey] = [];
+        }
+        $groupedRecords[$compositeKey][] = $record;
+    }
+
+    $grandTotals = [];
+    $defaultWidth = 40;
+
+    foreach ($groupedRecords as $compositeKey => $groupRecords) {
         $pdf->SetFont('Arial', 'B', 12);
-        $pdf->Cell(90, 10, 'worker', 1, 0, 'C');
-        $pdf->Cell(35, 10, 'Car NO#', 1, 0, 'C');
-        $pdf->Cell(35, 10, 'Service', 1, 0, 'C');
-        $pdf->Cell(45, 10, 'Worker Amount', 1, 0, 'C');
-        $pdf->Cell(35, 10, 'Amount', 1, 0, 'C');
-        $pdf->Cell(35, 10, 'Difference', 1, 1, 'C');
-      
-        $current_location = $row['location'];
-        $current_day = $row['workDay'];
-        $total_cars = 0;
-        $total_washer_amount = 0;
-        $total_amount = 0;
-        $total_difference = 0;
+        list($groupValue1, $groupValue2) = explode('_', $compositeKey);
 
+        if ($groupByColumn1) $pdf->Cell(0, 6, strtoupper($groupByColumn1) . ": " . $groupValue1, 0, 1, 'L');
+        if ($groupByColumn2) $pdf->Cell(0, 6, strtoupper($groupByColumn2) . ": " . $groupValue2, 0, 1, 'L');
+
+        $pdf->Ln(4);
+
+        // Remove columns used for grouping
+        foreach ($groupRecords as $key => $record) {
+            if ($groupByColumn1) unset($groupRecords[$key][$groupByColumn1]);
+            if ($groupByColumn2) unset($groupRecords[$key][$groupByColumn2]);
+        }
+        
+        $columns = array_keys($groupRecords[0]);
+        $pdf->SetFont('Arial', 'B', 10);
+
+        $widths = [];
+        foreach ($columns as $index => $column) {
+            $widths[] = isset($columnWidths[$index]) ? $columnWidths[$index] : $defaultWidth;
+        }
+        $pdf->SetWidths($widths);
+
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->SetFont('Arial', 'B', 11);
+        $pdf->Row($columns);
+
+        $pdf->SetFont('Arial', '', 10);
+        $totals = [];
+        foreach ($groupRecords as $record) {
+            $rowValues = [];
+            foreach ($columns as $column) {
+                $value = $record[$column];
+                $rowValues[] = $value;
+
+                if (is_numeric($value)) {
+                    if (!isset($totals[$column])) $totals[$column] = 0;
+                    $totals[$column] += $value;
+
+                    if (!isset($grandTotals[$column])) $grandTotals[$column] = 0;
+                    $grandTotals[$column] += $value;
+                } else {
+                    if (!isset($totals[$column])) $totals[$column] = 0;
+                    $totals[$column] += 1;
+
+                    if (!isset($grandTotals[$column])) $grandTotals[$column] = 0;
+                    $grandTotals[$column] += 1;
+                }
+            }
+            $pdf->Row($rowValues);
+        }
+
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(255, 0, 0);
+        $pdf->Row(array_values($totals));
+        $pdf->Ln(10);
+        $pdf->SetTextColor(0, 0, 0);
+
+        $isCreated = 1;
     }
 
-    $pdf->SetFont('Arial', '', 12);
-
-    $pdf->Cell(90, 10, $row['washer'], 1, 0, 'L');
-    $pdf->Cell(35, 10, $row['cars_worked'], 1, 0, 'C');
-    $pdf->Cell(35, 10, $row['action'], 1, 0, 'C');
-    $pdf->Cell(45, 10, $row['washer_amount'], 1, 0, 'C');
-    $pdf->Cell(35, 10, $row['total_amount'], 1, 0, 'C');
-    $pdf->Cell(35, 10, $row['total_amount'] - $row['washer_amount'], 1, 1, 'C');
- 
-
-    // Update the totals for each location
-    $total_cars++;
-    $total_washer_amount += $row['washer_amount'];
-    $total_amount += $row['total_amount'];
-    $total_difference += $row['total_amount'] - $row['washer_amount'];
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->SetTextColor(255, 0, 0);
+    $pdf->Row(['GRAND TOTAL'] + array_values($grandTotals));
     $pdf->SetTextColor(0, 0, 0);
-    $pdf->SetFont('Arial', '', 12);
-}
 
+    $pdf->SetFont('Arial', '', 8);
+    $pdf->Ln(-2);
+    $pdf->Cell(250, 10, 'Powered By AECleanCodes', 0, 2, 'R'); 
+    $pdf->Ln(-5);
+    $pdf->Cell(250, 10, '0549822202', 0, 2, 'R'); 
 
-if(!$valid){
-    echo 0;
-   exit;
-}
+    $pdf->Output('F', $finalFileName);
 
-// Add a summary row for the last location
-// Add a summary row for the last location
-$pdf->SetFont('Arial', 'B', 12);
-$pdf->Cell(90, 10, 'Total', 1, 0, 'R');
-$pdf->SetFont('Arial', 'B', 12);
-$pdf->SetTextColor(255, 0, 0);
-$pdf->Cell(35, 10, $total_cars, 1, 0, 'C');
-$pdf->Cell(35, 10, "      ", 1, 0, 'C');
-$pdf->Cell(45,  10, $total_washer_amount, 1, 0, 'C');
-$pdf->Cell(35, 10, $total_amount, 1, 0, 'C');
-$pdf->Cell(35, 10, $total_difference, 1, 1, 'C');
-$pdf->Ln();
-
-
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetFont('Arial', '', 12);
-
-// Calculate totals for all locations
-$total_cars_all = 0;
-$total_washer_amount_all = 0;
-$total_amount_all = 0;
-$total_difference_all = 0;
-
-
-
-$result->data_seek(0); // Reset pointer to beginning of result set
-
-while ($row = $result->fetch_assoc()) {
-    $total_cars_all ++;
-    $total_washer_amount_all += $row['washer_amount'];
-    $total_amount_all += $row['total_amount'];
-    $total_difference_all += ($row['total_amount'] - $row['washer_amount']);
-}
-
-// Add a grand summary table to the PDF
-$pdf->SetFont('Arial', 'B', 16);
-$pdf->AddPage();
-
-
-
-$pdf->SetTextColor(0, 0, 255);
-$pdf->Cell(0, 10, 'Grand Summary For All Worker Days ', 0, 1, 'C');
-$pdf->SetTextColor(0, 0, 0);
-
-$pdf->SetFont('Arial', 'B', 12);
-$pdf->Cell(90, 10, 'Item', 1, 0, 'L');
-$pdf->Cell(35, 10, 'Cars', 1, 0, 'C');
-$pdf->Cell(45, 10, 'Worker Amount(GHS)', 1, 0, 'C');
-$pdf->Cell(35, 10, 'Amount (GHS)', 1, 0, 'C');
-$pdf->Cell(35, 10, 'Difference (GHS)', 1, 1, 'C');
-
-$pdf->SetFont('Arial', '', 12);
-$pdf->SetFont('Arial', 'B', 12);
-$pdf->SetTextColor(255, 0, 0);
-
-$pdf->Cell(90, 10, 'Grand Total', 1, 0, 'L');
-$pdf->Cell(35, 10, $total_cars_all, 1, 0, 'C');
-
-$pdf->Cell(45, 10, $total_washer_amount_all, 1, 0, 'C');
-$pdf->Cell(35, 10, $total_amount_all, 1, 0, 'C');
-$pdf->Cell(35, 10, $total_difference_all, 1, 1, 'C');
-
-$pdf->SetTextColor(0, 0, 255);
-$pdf->Cell(0, 10, "Date Printed: ". getCurrentDateFormatted(), 0, 1, 'C');
-// Output the PDF
-//$pdf->Output('F','report/workerDailyReport.pdf');
-
-
-// Output the PDF
-$pdf->Output('F','report/systemDailyReport.pdf');
-
-
-
-if($valid){
-    echo 11;
-}
-
-
-
-
-function deleteFile($filePath) {
-    if (file_exists($filePath)) {
-      unlink($filePath);
-     
-    }
-  }
-  
-  function getCurrentDateFormatted() {
-    // Set timezone
-    date_default_timezone_set('UTC');
-
-    // Get current day, month, and year
-    $day = date('j');
-    $month = date('F');
-    $year = date('Y');
-
-    // Get current day of the week
-    $dayOfWeek = date('l');
-
-    // Format day with suffix
-    if ($day == 1 || $day == 21 || $day == 31) {
-        $dayFormatted = $day . 'st';
-    } else if ($day == 2 || $day == 22) {
-        $dayFormatted = $day . 'nd';
-    } else if ($day == 3 || $day == 23) {
-        $dayFormatted = $day . 'rd';
-    } else {
-        $dayFormatted = $day . 'th';
+    if ($conn && $conn instanceof mysqli) {
+        $conn->close();
     }
 
-    // Format date string
-    $dateString = $dayOfWeek . ', ' . $dayFormatted . ' ' . $month . ', ' . $year;
-
-    return $dateString;
+    return $isCreated;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

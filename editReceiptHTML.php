@@ -1,5 +1,5 @@
 <?php
-include "closeSession.php";
+//include "closeSession.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,11 +29,14 @@ include "closeSession.php";
     <div class="container-fluid d-flex align-items-center justify-content-center m-auto mt-2">
       <div class="row d-flex align-items-center justify-content-center m-auto">
         <div class="col-12 d-flex align-items-center justify-content-center m-auto">
-          <img id="logo" src="5.jpg" alt="" />
+        <a href="adminpage.php">
+        <img id="logo" src="5.jpg" alt="" />
+        </a>
         </div>
         
         <div id="wrapper1" class="col">
           <h6 style="color: #735800">ALL RECEIPT INFORMATION</h6>
+          <a href="adminpage.php"> <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>   Go BACK</a>
           
           <div class="scrollable-table m-auto">
           <table id="receiptTable" class="table table-striped">

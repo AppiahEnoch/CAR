@@ -529,3 +529,77 @@ function myAjax1() {
                 toastBootstrap.show();
               }
               
+
+              function showToastY(
+                toastID,
+                title = null,
+                message = null,
+                positionInPercentage = 50,
+                yesCallback = null,
+                noCallback = null
+              ) {
+                // CALL
+                //   showToastY(
+                //     "aeToastY",
+                //     "Confirm Delete All.",
+                //     "Are you sure you want to delete all intern registration codes?",
+                //     "20",
+                //     functionForYesOption, functionForNOption
+                // );
+              
+                var toast = document.getElementById(toastID);
+              
+                if (!toast) {
+                  console.error("Toast with given ID does not exist.");
+                  return;
+                }
+              
+                // Change title of the toast
+                if (title) {
+                  toast.querySelector(".toast-header strong").innerText = title;
+                }
+              
+                // Change message of the toast
+                if (message) {
+                  toast.querySelector("#toastMessage").innerText = message;
+                }
+              
+                var bsToast = new bootstrap.Toast(toast);
+              
+                if (yesCallback && typeof yesCallback === "function") {
+                  var yesButton = toast.querySelector(".btn-success");
+              
+                  // Remove previous event listeners
+                  yesButton.replaceWith(yesButton.cloneNode(true));
+                  yesButton = toast.querySelector(".btn-success"); // reselect the button
+              
+                  // Attach the new event
+                  yesButton.addEventListener("click", function () {
+                    yesCallback();
+                    bsToast.hide(); // Hide the toast after executing the callback
+                  });
+                }
+              
+                // Handling No button
+                var noButton = toast.querySelector(".btn-danger");
+                // Remove previous event listeners
+                noButton.replaceWith(noButton.cloneNode(true));
+                noButton = toast.querySelector(".btn-danger"); // reselect the button
+              
+                // Attach the new event
+                noButton.addEventListener("click", function () {
+                  if (noCallback && typeof noCallback === "function") {
+                    noCallback();
+                  }
+                  bsToast.hide(); // Hide the toast whether there's a noCallback or not
+                });
+              
+                toast.style.position = "fixed";
+                toast.style.top = positionInPercentage + "%";
+                toast.style.left = "50%";
+                toast.style.transform = "translate(-50%, -50%)";
+                toast.style.zIndex = "99999";
+              
+                bsToast.show();
+              }
+              

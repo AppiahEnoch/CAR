@@ -1,0 +1,99 @@
+.search-container {
+    height: 60px;
+    z-index: 45;
+    position: absolute;
+    top: 10rem;
+}
+
+.search-box {
+    position: relative;
+
+    .suggestion-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-top: none;
+        border-radius: 0 0 20px 20px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+
+        max-height: 15rem;
+        overflow-y: auto;
+        
+        .dropdown-item {
+            font-size: 16px;
+            padding: 12px 20px;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            border-radius: 20px;
+
+            &:hover {
+                background-color: #f6f6f6 !important;
+
+                a{
+                    color: #f6f6f6 !important;
+                }
+            }
+        }
+    }
+}
+
+.search-input {
+    padding: 10px;
+    padding-left: 30px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    min-width: 30rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+        border: 1px solid rgba(81, 203, 238, 1);
+        border-radius: 20px;
+        border-color: rgba(81, 203, 238, 1);
+    }
+
+    &::placeholder {
+        color: rgba(81, 203, 238, 1);
+    }
+    color: rgb(1, 8, 9);
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #aaa;
+}
+
+@media (max-width: 768px) {
+    .search-input {
+        min-width: 20rem;
+        
+        a{
+            color: #f6f6f6 !important;
+
+            &:hover {
+                color: #f6f6f6 !important;
+            }
+        }
+    }
+}
+
+
+.wt{
+    background-color: #f6f6f6 !important;
+    color: forestgreen !important;
+
+    &:hover {
+        background-color: #f6f6f6 !important;
+        color:  forestgreen !important;
+    }
+}

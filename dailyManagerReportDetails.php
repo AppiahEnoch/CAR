@@ -43,9 +43,6 @@ else {
 
 
 
-
-
-
 // Retrieve data from the 'washed' table
 $sql = "SELECT 
 location, 

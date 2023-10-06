@@ -20,5 +20,8 @@
         "fpdf/fpdf": "^1.85",
         "vlucas/phpdotenv": "^5.5",
         "setasign/fpdi": "^2.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
     }
 }

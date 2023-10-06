@@ -2,7 +2,6 @@
 include "config.php";
 require __DIR__ . '/vendor/autoload.php';
 
-
 $workerName=$_POST["workerName"];
 $workerDays=$_POST["workerDays"];
 $managerMobile=null;
@@ -36,9 +35,6 @@ else {
     }
 
 }
-
-
-
 
 
 // Retrieve data from the 'washed' table
@@ -215,8 +211,6 @@ while ($row = $result->fetch_assoc()) {
 $pdf->SetFont('Arial', 'B', 16);
 $pdf->AddPage();
 
-
-
 $pdf->SetTextColor(0, 0, 255);
 $pdf->Cell(0, 10, 'Grand Summary For All Worker Days ', 0, 1, 'C');
 $pdf->SetTextColor(0, 0, 0);
@@ -253,9 +247,6 @@ $pdf->Output('F','report/managerMonthlyReport.pdf');
 if($valid){
     echo 11;
 }
-
-
-
 
 function deleteFile($filePath) {
     if (file_exists($filePath)) {

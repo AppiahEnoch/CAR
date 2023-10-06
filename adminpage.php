@@ -81,6 +81,12 @@ include "checkSysadmin.php";
       Edit  Receipt
     </a>
 </li>
+            <li class="nav-item">
+    <a id="ll3" class="nav-link" href="MISC.php">
+    <i class="fa fa-bandcamp" aria-hidden="true"></i>
+      MISC
+    </a>
+</li>
 
 
      
@@ -388,7 +394,9 @@ include "checkSysadmin.php";
     crossorigin="anonymous"></script>
 
     <script src="jf.js"></script>
-    <script src="adminpage.js"></script>
+ 
+
+    <script src="adminpage.js?version=<?php echo filemtime('adminpage.js'); ?>"></script>
 
 </body>
 </html>

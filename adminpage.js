@@ -71,10 +71,11 @@ $(document).ready(function () {
     getSystemYearlyReport();
   });
 
+
   $('#emptySystem').click(function () {
     showMYesNo();
   });
-
+  
   $('#btDeleteWorker').click(function () {
     if (confirm('Are you sure you want to delete this worker?')) {
       washerName = getSelectedText('washerList');
@@ -172,11 +173,12 @@ function getWorkerDaily() {
       workerDays: washerDays,
     },
     // url: "dailyworkerReport.php",
-    url: 'dailyworkerReportDetails.php',
+    url: 'dailyworkerReportDetails2.php',
     dataType: 'text',
     success: function (data, status) {
-   //   alert(data) 
-      if (data != 11) {
+     // alert(data) 
+     // console.log(data)
+      if (data != 1) {
         showAEMerror('NO RECORD FOUND', 'NO RECORD FOUND');
         return;
       }
@@ -199,10 +201,10 @@ function getWorkerMonthly() {
       workerDays: washerDays,
     },
     // url: "dailyworkerReport.php",
-    url: 'monthlyworkerReportDetails.php',
+    url: 'monthlyworkerReportDetails2.php',
     dataType: 'text',
     success: function (data, status) {
-      if (data != 11) {
+      if (data != 1) {
         showAEMerror('NO RECORD FOUND', 'NO RECORD FOUND');
         return;
       }
@@ -217,6 +219,7 @@ function getWorkerMonthly() {
 }
 
 function getManagerDaily() {
+
   $.ajax({
     type: 'post',
     cache: false,
@@ -224,11 +227,11 @@ function getManagerDaily() {
       workerName: managerName,
       workerDays: managerDays,
     },
-    url: 'dailyManagerReportDetails.php',
+    url: 'dailyManagerReportDetails2.php',
     // url: "monthlyworkerReportDetails.php",
     dataType: 'text',
     success: function (data, status) {
-     // alert(data)
+  
       if (data != 11) {
         showAEMerror('NO RECORD FOUND', 'NO RECORD FOUND');
         return;
@@ -251,10 +254,12 @@ function getManagerMonthly() {
       workerName: managerName,
       workerDays: managerDays,
     },
-    url: 'monthlyManagerReportDetails.php',
+    url: 'monthlyManagerReportDetails2.php',
     // url: "monthlyworkerReportDetails.php",
     dataType: 'text',
     success: function (data, status) {
+
+     // alert(data)
       if (data != 11) {
         showAEMerror('NO RECORD FOUND', 'NO RECORD FOUND');
         return;
@@ -280,7 +285,8 @@ function getSystemDailyReport() {
     url: 'dailySystemReportDetails.php',
     dataType: 'text',
     success: function (data, status) {
-      if (data != 11) {
+      //alert(data)
+      if (data != 1) {
         showAEMerror('NO RECORD FOUND', 'NO RECORD FOUND');
         return;
       }
@@ -305,7 +311,7 @@ function getSystemMonthlyReport() {
     url: 'monthlySystemReportDetails.php',
     dataType: 'text',
     success: function (data, status) {
-      if (data != 11) {
+      if (data != 1) {
         showAEMerror('NO RECORD FOUND', 'NO RECORD FOUND');
         return;
       }
@@ -330,7 +336,10 @@ function getSystemYearlyReport() {
     url: 'yearlySystemReportDetails.php',
     dataType: 'text',
     success: function (data, status) {
-      if (data != 11) {
+      //alert(data)
+      console.log(data)
+      
+      if (data != 1) {
         showAEMerror('NO RECORD FOUND', 'NO RECORD FOUND');
         return;
       }

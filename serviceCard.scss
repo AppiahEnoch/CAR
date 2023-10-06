@@ -1,0 +1,84 @@
+#serviceWrapper {
+    background-color: #e9f7ef; // A lighter shade of green for background
+
+    .col {
+        padding: 1rem;
+
+        .card {
+            height: 100%;
+            background-color: #4CAF50; // A softer green for the card background
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+
+            .card-body {
+                flex-grow: 1;
+                padding: 1.5rem;
+                color: white;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                h1.card-title {
+                    font-size: 1.5rem;
+                    margin-bottom: 1rem;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                }
+
+                p.card-text {
+                    flex-grow: 2;
+                    overflow: auto;
+                    margin-bottom: 1rem;
+                }
+
+                a.btn {
+                    align-self: flex-start;
+                    background-color: #2E7D32; // A darker shade for the button background to contrast with the card background
+                    border: none;
+
+                    &:hover {
+                        background-color: #1B5E20; // Slightly darker shade on hover
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@keyframes pulsate {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+}
+
+@keyframes subtleColorChange {
+    0%, 100% {
+        background-color: #4CAF50;  // primary green
+    }
+    50% {
+        background-color: #388E3C;  // slightly darker green
+    }
+}
+
+#mservice, #mservive {
+    display: inline-block;
+    animation: pulsate 3s infinite ease-in-out;
+    font-weight: bold;
+    font-size: 1.5em;
+    background-color: #4CAF50; // Set an initial background color
+    padding: 0.5em 1em;
+    border-radius: 8px;
+    color: white;
+}
+
+#ourservice {
+    animation: subtleColorChange 5s infinite ease-in-out;
+}

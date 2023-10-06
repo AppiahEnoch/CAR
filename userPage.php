@@ -84,11 +84,11 @@ include "checkUser.php";
                 >
               </li>
 
-              <li class="nav-item d-none">
-                <a id="ll3" class="nav-link" href="#">
-                  <i class="fa fa-search" aria-hidden="true"></i>
+              <li class="nav-item">
+                <a id="ll3" class="nav-link" href="MISC1.php">
+                <i class="fa fa-bandcamp" aria-hidden="true"></i>
 
-                  Search</a
+                  MISC</a
                 >
               </li>
 

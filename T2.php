@@ -1,49 +1,63 @@
 <?php
+
 session_start();
 include "config.php";
 './vendor/autoload.php';
 require('mc_table.php');
-//report/systemDailyReport.pdf
 
-$finalFileName='report/systemMonthlyReport.pdf'; 
+$finalFileName='report/workerDailyReport.pdf';
 
-
-
-$pageTitle="SYSTEM MONTHLY REPORT";
-
-
+$pageTitle="DAILY WASHER REPORT";
+$workerNameSanitized = "KOFI BOAKYE";
+$workerDaysSanitized = 7;
 
 // CREATE A PDF HEADER
 // SELECT app_name, location, email FROM app;
 
-//$sql1 = "SELECT wfullname as name, wmobile as mobile, wemail as email FROM washer WHERE wfullname  = '$workerNameSanitized'";
+$sql1 = "SELECT wfullname as name, wmobile as mobile, wemail as email FROM washer WHERE wfullname  = '$workerNameSanitized'";
 
-$sql1 = "SELECT `app_name` AS BUSSINESS,`email`,`location`as Loc FROM `app` WHERE 1";
+//$sql1 = "SELECT `app_name` AS BUSSINESS,`email`,`location`as Loc FROM `app` WHERE 1";
+
+
+
 
 
 // SECOND QUERY YOU MAY FORM YOUR QUERY IN ANY WAY HERE I AM JUST GIVING AN EXAMPLE
 
 
+$workerNameSanitized = "KOFI BOAKYE";
+$workerDaysSanitized = 7;
 
-
-
-
-$sysDays=$_POST["sysDays"];
-
-// Retrieve data from the 'washed' table
 $sql2 = "SELECT 
-location, 
-locationUser AS Manager,
-washer,
-DATE_FORMAT(recdate, '%M, %Y') AS 'MONTH', 
-carNumber AS 'vehicle No#', `action`,
-washeramount AS 'washer amount', 
-amount AS 'total amount', amount - washeramount AS 'difference'
+            location, 
+            carNumber,
+            action AS service,
+            DATE_FORMAT(recdate, '%W, %D %M, %Y') AS workDay, 
+            carNumber AS cars_worked, 
+            washeramount AS washer_amount, 
+            amount AS total_amount,
+            (amount - washeramount) AS difference 
+        FROM washed 
+        WHERE 
+            washer = '$workerNameSanitized' 
+            AND recdate BETWEEN DATE_SUB(NOW(), INTERVAL $workerDaysSanitized DAY) AND NOW()
+        GROUP BY location, DATE(recdate), carNumber, 'action';";
 
-FROM washed 
-WHERE 
-recdate BETWEEN DATE_SUB(NOW(), INTERVAL $sysDays MONTH) AND NOW() order by recdate,`location` asc
-";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -51,15 +65,27 @@ recdate BETWEEN DATE_SUB(NOW(), INTERVAL $sysDays MONTH) AND NOW() order by recd
 // MAKE THESE NULL IF YOU WILL NOT NEED THEM
 
 $criteria1 = 'location';
-$criteria2 = 'MONTH';
+$criteria2 = 'workDay';
 
 
 $criteria1 =null;
-//$criteria2 = null;
+$criteria2 = null;
 
 
 // SET COLUMN WIDTHS
-$widths = [30, 30, 60, 30, 30, 30, 30, 30];  
+$widths = [30, 30, 20];  
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -71,12 +97,11 @@ $pdf = createReportHeading($conn, $sql1, $pageTitle, $logo);
 
 // CREATE TABLES
 
-
+$workerName = "KOFI BOAKYE";
+$workerDays = 7;
 $records = fetchRecords($conn, $sql2);
 
-  $isCreated=    generateReport($pdf,$conn, $records,$criteria1,$criteria2, $widths,$finalFileName);
-
-  echo $isCreated;
+generateReport($pdf,$conn, $records,$criteria1,$criteria2, $widths,$finalFileName);
 
 
 
@@ -154,8 +179,8 @@ function fetchRecords($conn, $sql) {
 
 
 
-function generateReport($pdf, $conn, $records, $groupByColumn1 = null, $groupByColumn2 = null, $columnWidths = [], $finalFileName = null) {
-    $isCreated = 0;
+function generateReport($pdf,$conn, $records, $groupByColumn1 = null, $groupByColumn2 = null, $columnWidths = [], $afterTableCallback = null,$finalFileName=null) {
+
     $pdf->SetFont('Arial', 'B', 10);
 
     if (is_null($records) || !is_array($records) || empty($records)) {
@@ -167,6 +192,7 @@ function generateReport($pdf, $conn, $records, $groupByColumn1 = null, $groupByC
         $groupValue1 = $groupByColumn1 ? $record[$groupByColumn1] : '';
         $groupValue2 = $groupByColumn2 ? $record[$groupByColumn2] : '';
 
+        // Create a composite key for grouping
         $compositeKey = "{$groupValue1}_{$groupValue2}";
 
         if (!isset($groupedRecords[$compositeKey])) {
@@ -180,19 +206,15 @@ function generateReport($pdf, $conn, $records, $groupByColumn1 = null, $groupByC
 
     foreach ($groupedRecords as $compositeKey => $groupRecords) {
         $pdf->SetFont('Arial', 'B', 12);
+
+        // Split the composite key back into its components for display
         list($groupValue1, $groupValue2) = explode('_', $compositeKey);
 
         if ($groupByColumn1) $pdf->Cell(0, 6, strtoupper($groupByColumn1) . ": " . $groupValue1, 0, 1, 'L');
         if ($groupByColumn2) $pdf->Cell(0, 6, strtoupper($groupByColumn2) . ": " . $groupValue2, 0, 1, 'L');
-
+        
         $pdf->Ln(4);
 
-        // Remove columns used for grouping
-        foreach ($groupRecords as $key => $record) {
-            if ($groupByColumn1) unset($groupRecords[$key][$groupByColumn1]);
-            if ($groupByColumn2) unset($groupRecords[$key][$groupByColumn2]);
-        }
-        
         $columns = array_keys($groupRecords[0]);
         $pdf->SetFont('Arial', 'B', 10);
 
@@ -201,12 +223,14 @@ function generateReport($pdf, $conn, $records, $groupByColumn1 = null, $groupByC
             $widths[] = isset($columnWidths[$index]) ? $columnWidths[$index] : $defaultWidth;
         }
         $pdf->SetWidths($widths);
-
+        // bold black font
         $pdf->SetTextColor(0, 0, 0);
         $pdf->SetFont('Arial', 'B', 11);
-        $pdf->Row($columns);
 
+
+        $pdf->Row($columns);
         $pdf->SetFont('Arial', '', 10);
+
         $totals = [];
         foreach ($groupRecords as $record) {
             $rowValues = [];
@@ -222,42 +246,65 @@ function generateReport($pdf, $conn, $records, $groupByColumn1 = null, $groupByC
                     $grandTotals[$column] += $value;
                 } else {
                     if (!isset($totals[$column])) $totals[$column] = 0;
-                    $totals[$column] += 1;
+                    $totals[$column] += 1;  // Count
 
                     if (!isset($grandTotals[$column])) $grandTotals[$column] = 0;
-                    $grandTotals[$column] += 1;
+                    $grandTotals[$column] += 1;  // Count
                 }
             }
             $pdf->Row($rowValues);
         }
 
         $pdf->SetFont('Arial', 'B', 10);
+        //color red
         $pdf->SetTextColor(255, 0, 0);
         $pdf->Row(array_values($totals));
         $pdf->Ln(10);
         $pdf->SetTextColor(0, 0, 0);
 
-        $isCreated = 1;
+  
+
+// CREATE SUB TABLE HERE 
+     //   $totalAmount = $totals['totalAmount']; // column name from parent table
+
+
+
+
+  
+
+
+
+
+   
+
+
+//
+
+
+
     }
 
     $pdf->SetFont('Arial', 'B', 12);
+ 
     $pdf->SetTextColor(255, 0, 0);
+
     $pdf->Row(['GRAND TOTAL'] + array_values($grandTotals));
+    //color black
     $pdf->SetTextColor(0, 0, 0);
 
+    // set font regular
     $pdf->SetFont('Arial', '', 8);
+
     $pdf->Ln(-2);
     $pdf->Cell(250, 10, 'Powered By AECleanCodes', 0, 2, 'R'); 
     $pdf->Ln(-5);
     $pdf->Cell(250, 10, '0549822202', 0, 2, 'R'); 
 
-    $pdf->Output('F', $finalFileName);
+    $pdf->Output('F',$finalFileName);
 
     if ($conn && $conn instanceof mysqli) {
         $conn->close();
     }
-
-    return $isCreated;
 }
 
 

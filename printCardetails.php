@@ -3,13 +3,18 @@ session_start();
 include "config.php";
 './vendor/autoload.php';
 require('mc_table.php');
-//report/systemDailyReport.pdf
 
-$finalFileName='report/systemMonthlyReport.pdf'; 
+$finalFileName='report/customerVehicleReport.pdf';
+
+$pageTitle="CUSTOMER VEHICLE REPORT";
 
 
+$carNumber=$_POST["carNumber"];
 
-$pageTitle="SYSTEM MONTHLY REPORT";
+// trim 
+$carNumber = trim($carNumber);
+
+
 
 
 
@@ -27,39 +32,53 @@ $sql1 = "SELECT `app_name` AS BUSSINESS,`email`,`location`as Loc FROM `app` WHER
 
 
 
+$carNumberSanitized = mysqli_real_escape_string($conn, $carNumber);
 
-$sysDays=$_POST["sysDays"];
+$sql2 = "SELECT
+    DATE_FORMAT(w.recdate, '%M %Y') AS 'Month',
+    w.location,
+    w.locationUser AS 'manager',
+    wa.wfullname AS 'washer',
+    w.carNumber AS 'vehicle',
+    w.action AS 'service',
+    w.amount AS 'amount paid',
+    w.washeramount AS 'washer amount', w.amount - w.washeramount AS difference
+FROM `washed` w
+LEFT JOIN `washer` wa ON w.washer = wa.wfullname
+WHERE w.carNumber = '$carNumberSanitized'
+ORDER BY w.recdate ASC";
 
-// Retrieve data from the 'washed' table
-$sql2 = "SELECT 
-location, 
-locationUser AS Manager,
-washer,
-DATE_FORMAT(recdate, '%M, %Y') AS 'MONTH', 
-carNumber AS 'vehicle No#', `action`,
-washeramount AS 'washer amount', 
-amount AS 'total amount', amount - washeramount AS 'difference'
 
-FROM washed 
-WHERE 
-recdate BETWEEN DATE_SUB(NOW(), INTERVAL $sysDays MONTH) AND NOW() order by recdate,`location` asc
-";
+
+
 
 
 
 
 // MAKE THESE NULL IF YOU WILL NOT NEED THEM
 
-$criteria1 = 'location';
-$criteria2 = 'MONTH';
+$criteria1 = 'vehicle';
+$criteria2 = 'Month';
 
 
-$criteria1 =null;
+//$criteria1 =null;
 //$criteria2 = null;
 
 
 // SET COLUMN WIDTHS
-$widths = [30, 30, 60, 30, 30, 30, 30, 30];  
+$widths = [40, 30, 20];  
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -71,13 +90,15 @@ $pdf = createReportHeading($conn, $sql1, $pageTitle, $logo);
 
 // CREATE TABLES
 
-
 $records = fetchRecords($conn, $sql2);
+
+
+
 
   $isCreated=    generateReport($pdf,$conn, $records,$criteria1,$criteria2, $widths,$finalFileName);
 
-  echo $isCreated;
-
+ 
+echo $isCreated;
 
 
 

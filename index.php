@@ -19,7 +19,9 @@
     <link rel="stylesheet" href="index-xm.css" />
     <link rel="stylesheet" href="index-sm.css" />
     <link rel="stylesheet" href="index-lg.css" />
-    <link rel="stylesheet" href="index2.css" />
+
+    <link rel="stylesheet" href="./aeSC.css?<?php echo filemtime("aeSC.css"); ?>" />
+    <link rel="stylesheet" href="./serviceCard.css?<?php echo filemtime("serviceCard.css"); ?>" />
 
     <link
       rel="icon"
@@ -188,6 +190,7 @@
                     role="button"
                    
                   >
+                  <i class="fa fa-user" aria-hidden="true"></i>
                   Top Customer
                   </a>
 
@@ -204,29 +207,21 @@
                   </ul>
                 </div>
               </li>
-              <li class="nav-item  d-none">
+              <li class="nav-item ">
                 <div class="dropdown">
                   <a
-                    class="btn btn-secondary dropdown-toggle"
+                    class="btn btn-secondary d-none"
                     href="#"
                     role="button"
-                    data-bs-toggle="dropdown"
+                
                     aria-expanded="false"
                   >
-                   Staff
+
+                  <i class=></i>
+                  <i class="fa fa-search" aria-hidden="true"></i> Search 
                   </a>
 
-                  <ul class="dropdown-menu">
-                    <li id="gh">
-                      <a class="dropdown-item" href="#"
-                        >Upload Student Results</a
-                      >
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">Download Timetable</a>
-                    </li>
-                    <li><a class="dropdown-item" href="#">Other Action</a></li>
-                  </ul>
+                 
                 </div>
               </li>
 
@@ -301,6 +296,10 @@
         </div>
       </nav>
     </div>
+
+    <?php
+    include_once 'aeSC.php';
+    ?>
 
     <!--
 CAROUSEL ELEMENT BELOW THIS LINE
@@ -394,33 +393,9 @@ CAROUSEL ELEMENT BELOW THIS LINE
      
       </div>
       <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <h1 class="card-title">Service 1</h1>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <h1 class="card-title">Service 2</h1>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <h1 class="card-title">Service 3</h1>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
+        
+        
+     
       </div>
       
     
@@ -437,6 +412,8 @@ CAROUSEL ELEMENT BELOW THIS LINE
     </div>
 
     
+ 
+
 
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
@@ -458,7 +435,9 @@ CAROUSEL ELEMENT BELOW THIS LINE
       crossorigin="anonymous"
     ></script>
 
+    <script src="ae.js?version=<?php echo filemtime('ae.js'); ?>"></script>
     <script src="fillserviceCards.js?version=<?php echo filemtime('fillserviceCards.js'); ?>"></script>
+    <script src="aeSC.js?version=<?php echo filemtime('aeSC.js'); ?>"></script>
     
   </body>
 </html>

@@ -3,22 +3,20 @@ session_start();
 include "config.php";
 './vendor/autoload.php';
 require('mc_table.php');
-//report/systemDailyReport.pdf
 
-$finalFileName='report/systemMonthlyReport.pdf'; 
+$finalFileName='report/workerMonthlyReport.pdf';
 
+$pageTitle="MONTHLY WASHER REPORT";
 
-
-$pageTitle="SYSTEM MONTHLY REPORT";
-
-
+$workerNameSanitized = $_POST["workerName"];
+$workerDaysSanitized = $_POST["workerDays"];
 
 // CREATE A PDF HEADER
 // SELECT app_name, location, email FROM app;
 
-//$sql1 = "SELECT wfullname as name, wmobile as mobile, wemail as email FROM washer WHERE wfullname  = '$workerNameSanitized'";
+$sql1 = "SELECT wfullname as name, wmobile as mobile, wemail as email FROM washer WHERE wfullname  = '$workerNameSanitized'";
 
-$sql1 = "SELECT `app_name` AS BUSSINESS,`email`,`location`as Loc FROM `app` WHERE 1";
+//$sql1 = "SELECT `app_name` AS BUSSINESS,`email`,`location`as Loc FROM `app` WHERE 1";
 
 
 // SECOND QUERY YOU MAY FORM YOUR QUERY IN ANY WAY HERE I AM JUST GIVING AN EXAMPLE
@@ -28,22 +26,35 @@ $sql1 = "SELECT `app_name` AS BUSSINESS,`email`,`location`as Loc FROM `app` WHER
 
 
 
-$sysDays=$_POST["sysDays"];
+$sql2 = "SELECT
+ 
+    DATE_FORMAT(recdate, '%M, %Y') AS  'Month',
+    carNumber AS 'vehicle NO#',
+    washeramount AS 'washer amount',
+    amount AS  'total amount', amount - washeramount as difference,
+    `action`AS 'service'
+    FROM washed
+    WHERE
+    washer = '$workerNameSanitized'
+    AND recdate BETWEEN DATE_SUB(NOW(), INTERVAL $workerDaysSanitized MONTH) AND NOW() order by recdate asc
+    ";
 
-// Retrieve data from the 'washed' table
-$sql2 = "SELECT 
-location, 
-locationUser AS Manager,
-washer,
-DATE_FORMAT(recdate, '%M, %Y') AS 'MONTH', 
-carNumber AS 'vehicle No#', `action`,
-washeramount AS 'washer amount', 
-amount AS 'total amount', amount - washeramount AS 'difference'
 
-FROM washed 
-WHERE 
-recdate BETWEEN DATE_SUB(NOW(), INTERVAL $sysDays MONTH) AND NOW() order by recdate,`location` asc
-";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -51,7 +62,7 @@ recdate BETWEEN DATE_SUB(NOW(), INTERVAL $sysDays MONTH) AND NOW() order by recd
 // MAKE THESE NULL IF YOU WILL NOT NEED THEM
 
 $criteria1 = 'location';
-$criteria2 = 'MONTH';
+$criteria2 = 'Month';
 
 
 $criteria1 =null;
@@ -59,7 +70,19 @@ $criteria1 =null;
 
 
 // SET COLUMN WIDTHS
-$widths = [30, 30, 60, 30, 30, 30, 30, 30];  
+$widths = [40, 30, 20];  
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -71,7 +94,8 @@ $pdf = createReportHeading($conn, $sql1, $pageTitle, $logo);
 
 // CREATE TABLES
 
-
+$workerName = "KOFI BOAKYE";
+$workerDays = 7;
 $records = fetchRecords($conn, $sql2);
 
   $isCreated=    generateReport($pdf,$conn, $records,$criteria1,$criteria2, $widths,$finalFileName);
