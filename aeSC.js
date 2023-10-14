@@ -2,6 +2,7 @@
 
 let carNumbersData = [];
 
+
 // Fetch carNumbers and their IDs on page load
 $(document).ready(function() {
     $.ajax({

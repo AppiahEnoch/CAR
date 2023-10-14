@@ -38,17 +38,20 @@ $carNumberSanitized = mysqli_real_escape_string($conn, $carNumber);
 
 $sql2 = "SELECT
     DATE_FORMAT(w.recdate, '%M %Y') AS 'Month',
+    DATE_FORMAT(w.recdate, '%D %b. %Y') AS 'Date',
     w.location,
     w.locationUser AS 'manager',
     wa.wfullname AS 'washer',
     w.carNumber AS 'vehicle',
     w.action AS 'service',
     w.amount AS 'amount paid',
-    w.washeramount AS 'washer amount', w.amount - w.washeramount AS difference
+    w.washeramount AS 'washer amount',
+    w.amount - w.washeramount AS difference
 FROM `washed` w
 LEFT JOIN `washer` wa ON w.washer = wa.wfullname
 WHERE w.carNumber = '$carNumberSanitized'
 ORDER BY w.recdate ASC";
+
 
 
 
@@ -68,7 +71,7 @@ $criteria2 = 'Month';
 
 
 // SET COLUMN WIDTHS
-$widths = [40, 30, 20];  
+$widths = [40, 30, 20,40,20,20];  
 
 
 
