@@ -50,7 +50,7 @@ function renderSuggestions(suggestions) {
 // Add event listener to dropdown items
 $(document).on('click', '.wt', function() {
     let id = $(this).data('id');
-    let carNumber = $(this).text();
+    let carNumber = $(this).text().trim();
     $(".search-input").val(carNumber);
 
     printCarDetails(carNumber)
