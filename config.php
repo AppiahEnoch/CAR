@@ -1,31 +1,23 @@
 <?php
-require_once('../ENV/env.php');
-$conn ="";
-$remote_addr = $_SERVER['REMOTE_ADDR'];
-$remote_host = gethostbyaddr($remote_addr);
-if($remote_host == "AECleanCodes1"){
+/*  CAR CRYSTAL CLEAR WASHING BAY */
+$email_sender="crytalcleargh@gmail.com";
+$email_password="lnepqtxcafyidpce";
+
 $DBhostname = "localhost";
 $DBusername = "root";
 $DBpassword = "";
 $database = "car2";
 $DBport = "63943"; 
-    
-}
+
+
+
+
+
+$conn ="";
 
     try {
-       $conn = mysqli_connect($DBhostname, $DBusername, $DBpassword, $database,$DBport) or die("Database connection failed");
+       $conn = mysqli_connect($DBhostname, $DBusername, $DBpassword, $database, $DBport) or die("Database connection failed");
  
     } catch (Throwable $th) {
         //throw $th;
     }
-
-
-
-
-
-// remote server
-
-
-
-
-
