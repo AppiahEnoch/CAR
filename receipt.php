@@ -1,105 +1,134 @@
 <?php
 include "vendor/autoload.php";
 include "config.php";
-
 if (!isset($_SESSION)) {
     session_start();
-  }
+}
 
 // Your SQL query
 $sql = "SELECT * FROM tempwashed";
 $result = $conn->query($sql);
 
 // Create a new PDF document
-$pdf = new FPDF('P','mm', array(80,297)); // Width of 80mm, Height can be anything. Here it's A4 Height
-
-$pdf->SetMargins(10, 10, 10); // Set the margins. Values are in the order (left, top, right)
+$pdf = new FPDF('P', 'mm', array(80, 297));
+$pdf->SetMargins(5, 10, 5); // Adjusted margins for better space utilization
 $pdf->AddPage();
 
-// Set font
-$pdf->SetFont('Arial', '', 12);
-$m=  $_SESSION["ceoM"];
-$ceo_name=  $_SESSION["ceo"];
-$ceo_name=strtoupper($ceo_name);
-// Check if the query returned any rows
+// Company Header
+$pdf->SetFont('Arial', 'B', 16);
+$pdf->Cell(70, 10, 'Crystal Clear', 0, 1, 'C');
+$pdf->SetFont('Arial', 'B', 14);
+$pdf->Cell(70, 6, 'Washing Bay', 0, 1, 'C');
+
+// Add a decorative line
+$pdf->SetLineWidth(0.5);
+$pdf->Line(5, $pdf->GetY(), 75, $pdf->GetY());
+$pdf->Ln(2);
+
 if ($result->num_rows > 0) {
-    // Get the first row to display the single instance info
     $row = $result->fetch_assoc();
-    // Display the single instance info
-    $pdf->SetFont('Arial', 'B', 16); // Set font to Arial Bold 16
-    // Display title
-    $pdf->Cell(60, 10, 'Crystal Clear Washing Bay', 0, 1, 'C');
-    $pdf->SetFont('Arial', '', 12);
-    $pdf->Ln(-4); 
-    $pdf->Cell(60, 10,"CEO: ".$ceo_name, 0, 1, 'L');
-    $pdf->Ln(-4); 
-    $pdf->Cell(60, 10,"Mobile:".$m, 0, 1, 'L');
-    $pdf->Ln(-4); 
- // Reset font to Arial regular 12 for the rest of the receipt
-
-    $pdf->Cell(60, 10, "Loc:".$row["location"], 0, 1, 'L');
-    $pdf->Ln(-3); 
-    $pdf->Line(10, $pdf->GetY(), 70, $pdf->GetY());
-
-
-    $pdf->Cell(60, 10, 'Receipt ID: ' . $row["receiptid"], 0, 1, 'L');
-    $pdf->Ln(-5); 
-    $pdf->Cell(60, 10, 'Car Number: ' . $row["carNumber"], 0, 1, 'L');
-    $pdf->Ln(-5); 
-    $pdf->Cell(60, 10, 'Description: ' . $row["carname"], 0, 1, 'L');
-    $pdf->Ln(-5); 
-   
-
-    $pdf->Cell(60, 10, 'Loc. Manager: ' . $row["locationUser"], 0, 1, 'L');
-    $pdf->Ln(-1); // Line break
-
-    // Column headers
-    $pdf->Cell(40, 10, 'Service', 1, 0, 'C');
-    $pdf->Cell(20, 10, 'Amount', 1, 1, 'C'); // Line end
-
-    // Display the first row
-    $pdf->Cell(40, 10, $row["action"], 1);
-    $pdf->Cell(20, 10, $row["amount"], 1, 1, 'C'); // Line end
-
-    // Output data of each additional row
-
-
-    while($row = $result->fetch_assoc()) {
-        $pdf->Cell(40, 10, $row["action"], 1);
-        $pdf->Cell(20, 10, $row["amount"], 1, 1, 'C'); // Line end
-  
-    }
-
-
-    $sql = "SELECT sum(amount) as total_amount  FROM tempwashed";
-     $result = $conn->query($sql);
-     $row = $result->fetch_assoc();
-     $total_amount = $row["total_amount"];
-
-
-
-
-
-    $pdf->Cell(40, 10, 'Total Amount (GHS)', 1, 0, 'C');
-    $pdf->Cell(20, 10, $total_amount, 1, 1, 'C'); // Line end, 1, 0, 'C');
-    $pdf->Ln(-1); 
-    $currentDateTime = date('Y-m-d H:i:s');
-
-    // Format the date and time
-    $formattedDateTime = date('l, jS F, Y  g:i a', strtotime($currentDateTime));
+    
+    // Contact Information Section
+    $pdf->SetFont('Arial', 'B', 9);
+    $ceo_name = strtoupper($_SESSION["ceo"]);
+    $m = $_SESSION["ceoM"];
+    
+    // Two-column layout for contact info
+    $pdf->Cell(35, 5, 'CEO:', 0, 0, 'L');
     $pdf->SetFont('Arial', '', 9);
-    $pdf->Cell(60, 10, $formattedDateTime, 0, 1, 'C');
-    $pdf->SetFont('Arial', '', 12);
+    $pdf->Cell(35, 5, $ceo_name, 0, 1, 'L');
+    
+    $pdf->SetFont('Arial', 'B', 9);
+    $pdf->Cell(35, 5, 'Mobile:', 0, 0, 'L');
+    $pdf->SetFont('Arial', '', 9);
+    $pdf->Cell(35, 5, $m, 0, 1, 'L');
+    
+    $pdf->SetFont('Arial', 'B', 9);
+    $pdf->Cell(35, 5, 'Location:', 0, 0, 'L');
+    $pdf->SetFont('Arial', '', 9);
+    $pdf->Cell(35, 5, $row["location"], 0, 1, 'L');
+    
+    // Decorative line
+    $pdf->SetLineWidth(0.2);
+    $pdf->Line(5, $pdf->GetY() + 2, 75, $pdf->GetY() + 2);
+    $pdf->Ln(4);
+    
+    // Transaction Details
+    $pdf->SetFont('Arial', 'B', 9);
+    $pdf->Cell(35, 5, 'Receipt ID:', 0, 0, 'L');
+    $pdf->SetFont('Arial', '', 9);
+    $pdf->Cell(35, 5, $row["receiptid"], 0, 1, 'L');
+    
+    $pdf->SetFont('Arial', 'B', 9);
+    $pdf->Cell(35, 5, 'Car Number:', 0, 0, 'L');
+    $pdf->SetFont('Arial', '', 9);
+    $pdf->Cell(35, 5, $row["carNumber"], 0, 1, 'L');
+    
+    $pdf->SetFont('Arial', 'B', 9);
+    $pdf->Cell(35, 5, 'Vehicle:', 0, 0, 'L');
+    $pdf->SetFont('Arial', '', 9);
+    $pdf->Cell(35, 5, $row["carname"], 0, 1, 'L');
+    
+    $pdf->SetFont('Arial', 'B', 9);
+    $pdf->Cell(35, 5, 'Manager:', 0, 0, 'L');
+    $pdf->SetFont('Arial', '', 9);
+    $pdf->Cell(35, 5, $row["locationUser"], 0, 1, 'L');
+    
+    $pdf->Ln(2);
+    
+    // Services Table Header
+    $pdf->SetFillColor(240, 240, 240);
+    $pdf->SetFont('Arial', 'B', 9);
+    $pdf->Cell(45, 7, 'Service', 1, 0, 'C', true);
+    $pdf->Cell(25, 7, 'Amount', 1, 1, 'C', true);
+    
+    // Reset font for table content
+    $pdf->SetFont('Arial', '', 9);
+    
+    // First row
+    $pdf->Cell(45, 6, $row["action"], 1);
+    $pdf->Cell(25, 6, number_format($row["amount"], 2), 1, 1, 'R');
+    
+    // Additional rows
+    while($row = $result->fetch_assoc()) {
+        $pdf->Cell(45, 6, $row["action"], 1);
+        $pdf->Cell(25, 6, number_format($row["amount"], 2), 1, 1, 'R');
+    }
+    
+    // Calculate total
+    $sql = "SELECT sum(amount) as total_amount FROM tempwashed";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $total_amount = $row["total_amount"];
+    
+    // Total Amount Row
+    $pdf->SetFont('Arial', 'B', 9);
+    $pdf->Cell(45, 7, 'Total Amount (GHS)', 1, 0, 'C', true);
+    $pdf->Cell(25, 7, number_format($total_amount, 2), 1, 1, 'R', true);
+    
+    $pdf->Ln(3);
+    
+    // Footer
+    $currentDateTime = date('Y-m-d H:i:s');
+    $formattedDateTime = date('l, jS F, Y  g:i a', strtotime($currentDateTime));
+    $pdf->SetFont('Arial', '', 8);
+    $pdf->Cell(70, 5, $formattedDateTime, 0, 1, 'C');
+    
+    // Thank you message
+    $pdf->Ln(2);
+    $pdf->SetFont('Arial', 'B', 9);
+    $pdf->Cell(70, 5, 'Thank You For Your Business!', 0, 1, 'C');
+    $pdf->SetFont('Arial', '', 8);
+    $pdf->Cell(70, 5, 'Please Come Again', 0, 1, 'C');
+    
 } else {
-    $pdf->Cell(60, 10, 'No results', 0, 1, 'C');
+    $pdf->Cell(70, 10, 'No results', 0, 1, 'C');
 }
 
 $pdf->Output();
 
-
-
-$sql  =  "DELETE FROM tempwashed";
+// Clean up temporary data
+$sql = "DELETE FROM tempwashed";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
-
 ?>

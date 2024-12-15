@@ -6,7 +6,7 @@ $email_password="lnepqtxcafyidpce";
 $DBhostname = "localhost";
 $DBusername = "root";
 $DBpassword = "";
-$database = "car2";
+$database = "car";
 $DBport = "63943"; 
 
 
